@@ -136,12 +136,12 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
-  binding {
-    role = "roles/organizationViewer"
-    members = [
-      "domain:${var.domain_identity_primary}",
-    ]
-  }
+//  binding {
+//    role = "roles/organizationViewer"
+//    members = [
+//      "domain:${var.domain_identity_primary}",
+//    ]
+//  }
 
 
 }
