@@ -41,7 +41,7 @@ resource "google_project_service" "enable_bigtable_api" {
 resource "google_project_service" "enable_bigquery_api" {
   depends_on = [google_project.project]
   project = google_project.project.id
-  service = "bigquery-json.googleapis.com"
+  service = "bigquery.googleapis.com"
   disable_on_destroy = false
 }
 
