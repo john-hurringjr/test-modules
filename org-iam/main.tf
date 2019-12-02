@@ -41,6 +41,13 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   }
 
   binding {
+    role    = "roles/securitycenter.admin"
+    members = [
+      "group:${var.security_admins_group}",
+    ]
+  }
+
+  binding {
     role    = "roles/accesscontextmanager.policyEditor"
     members = [
       "serviceAccount:${var.terraform_service_account}",
