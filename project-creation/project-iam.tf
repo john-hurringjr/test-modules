@@ -37,6 +37,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -45,6 +46,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -53,6 +55,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -61,6 +64,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -69,6 +73,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -77,6 +82,14 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "" #TODO Find Binary Authorization Service Agent
+    members = [
+      "serviceAccount:service-${google_project.project.number}@gcp-sa-binaryauthorization.iam.gserviceaccount.com",
     ]
   }
 
@@ -85,6 +98,14 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/cloudbuild.serviceAgent"
+    members = [
+      "serviceAccount:service-${google_project.project.number}@cloudbuild.gserviceaccount.com",
     ]
   }
 
@@ -93,6 +114,14 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/cloudfunctions.serviceAgent"
+    members = [
+      "serviceAccount:service-${google_project.project.number}@gcf-admin-robot.iam.gserviceaccount.com",
     ]
   }
 
@@ -101,6 +130,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -109,6 +139,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -117,6 +148,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -125,6 +157,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -133,6 +166,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -141,6 +175,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -149,6 +184,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -157,6 +193,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -165,22 +202,55 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
+
+  binding {
+    role = "roles/compute.serviceAgent" #TODO Validate
+    members = [
+      "serviceAccount:service-${google_project.project.number}@compute-system.iam.gserviceaccount.com",
+    ]
+  }
+
 
   binding {
     role = "roles/container.admin"
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
+
+  binding {
+    role = "roles/" #TODO Find Container Analysis Service Agent
+    members = [
+      "serviceAccount:service-${google_project.project.number}@container-analysis.iam.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/" #TODO Find Kubernetes Engine Service Agent
+    members = [
+      "serviceAccount:service-${google_project.project.number}@container-engine-robot.iam.gserviceaccount.com",
+    ]
+  }
+
 
   binding {
     role = "roles/dataflow.admin"
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "" #TODO Find Cloud Dataflow Service Agent
+    members = [
+      "serviceAccount:service-${google_project.project.number}@dataflow-service-producer-prod.iam.gserviceaccount.com",
     ]
   }
 
@@ -189,6 +259,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -197,6 +268,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -205,14 +277,17 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
+
 
   binding {
     role = "roles/dlp.admin"
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -221,6 +296,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -229,6 +305,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -237,6 +314,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -245,6 +323,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -253,6 +332,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -261,6 +341,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -269,6 +350,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -277,6 +359,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -285,6 +368,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -293,6 +377,14 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/serverless.serviceAgent"
+    members = [
+      "serviceAccount:service-${google_project.project.number}@gcp-sa-binaryauthorization.iam.gserviceaccount.com",
     ]
   }
 
@@ -301,6 +393,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -309,6 +402,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -317,6 +411,7 @@ data "google_iam_policy" "project_iam_policy_data" {
     members = [
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:service-${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
