@@ -64,3 +64,9 @@ variable "label_restrictions" {
   type        = string
   default     = ""
 }
+
+variable "project_admin_group_id" {
+  description = "Group who will have admin permissions for project"
+  type        = string
+  default     = ""
+}
