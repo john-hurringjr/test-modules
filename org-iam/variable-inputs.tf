@@ -56,3 +56,5 @@ variable "organization_id" {
   type        = string
   description = "Root domain identity. Allows all users with identity in domain to see org node. Helps users know they are working within appropriate space"
 }
+
+variable "billing_admins_group" {}

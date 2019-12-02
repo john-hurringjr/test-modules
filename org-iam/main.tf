@@ -143,6 +143,13 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  binding {
+    role = "roles/billing.admin"
+    members = [
+      "serviceAccount:${var.billing_admins_group}",
+    ]
+  }
+
 //  binding {
 //    role = "roles/organizationViewer"
 //    members = [
