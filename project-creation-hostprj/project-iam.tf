@@ -29,7 +29,8 @@ resource "google_service_account" "new_project_default_service_account" {
  *****************************************/
 
 resource "google_project_iam_binding" "logging_amin" {
-  role = "roles/logging.admin"
+  project = google_project.project.id
+  role    = "roles/logging.admin"
   members = [
     "group:${var.network_admin_group_id}",
     "serviceAccount:${google_service_account.new_project_default_service_account.email}",
@@ -38,7 +39,8 @@ resource "google_project_iam_binding" "logging_amin" {
 }
 
 resource "google_project_iam_binding" "network_admin" {
-  role = "roles/compute.networkAdmin"
+  project = google_project.project.id
+  role    = "roles/compute.networkAdmin"
   members = [
     "group:${var.network_admin_group_id}",
     "serviceAccount:${google_service_account.new_project_default_service_account.email}",
@@ -47,7 +49,8 @@ resource "google_project_iam_binding" "network_admin" {
 }
 
 resource "google_project_iam_binding" "compute_security_admin" {
-  role = "roles/compute.securityAdmin"
+  project = google_project.project.id
+  role    = "roles/compute.securityAdmin"
   members = [
     "group:${var.security_admin_group_id}",
     "serviceAccount:${google_service_account.new_project_default_service_account.email}",
@@ -56,7 +59,8 @@ resource "google_project_iam_binding" "compute_security_admin" {
 }
 
 resource "google_project_iam_binding" "service_account_user" {
-  role = "roles/iam.serviceAccountUser"
+  project = google_project.project.id
+  role    = "roles/iam.serviceAccountUser"
   members = [
     "group:${var.network_admin_group_id}",
     "serviceAccount:${google_service_account.new_project_default_service_account.email}",
@@ -65,7 +69,8 @@ resource "google_project_iam_binding" "service_account_user" {
 }
 
 resource "google_project_iam_binding" "compute_instance_admin" {
-  role = "roles/compute.instanceAdmin.v1"
+  project = google_project.project.id
+  role    = "roles/compute.instanceAdmin.v1"
   members = [
     "group:${var.network_admin_group_id}",
     "serviceAccount:${google_service_account.new_project_default_service_account.email}",
