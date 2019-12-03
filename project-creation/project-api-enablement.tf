@@ -121,3 +121,10 @@ resource "google_project_service" "enable_binaryauthorization_api" {
   service             = "binaryauthorization.googleapis.com"
   disable_on_destroy  = false
 }
+
+resource "google_project_service" "enable_oslogin_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.id
+  service             = "oslogin.googleapis.com"
+  disable_on_destroy  = false
+}
