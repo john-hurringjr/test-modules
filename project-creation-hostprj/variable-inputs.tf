@@ -35,12 +35,6 @@ variable "environment" {
   default     = ""
 }
 
-variable "unique_project_identifier" {
-  description = "A unique identifier for the project. Must not contain spaces, but may use dashes."
-  type        = string
-  default     = ""
-}
-
 variable "folder_id" {
   description = "The folder ID of where the project will reside."
   type        = string

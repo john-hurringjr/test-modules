@@ -19,7 +19,7 @@
 
 resource "google_project" "project" {
   name            = var.project_friendly_name
-  project_id      = "${var.unique_shared_id}-${var.environment}-${var.unique_project_identifier}"
+  project_id      = "${var.unique_shared_id}-shared-vpc-host-${var.environment}"
   folder_id       = var.folder_id
   billing_account = var.billing_account_id
 
