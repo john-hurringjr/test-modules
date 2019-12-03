@@ -16,6 +16,8 @@
 /******************************************
   Org Policies
   (Grant exceptions at lower level)
+  Check link below for new policies available
+  https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints
  *****************************************/
 
 # May only add users to IAM from approved domains

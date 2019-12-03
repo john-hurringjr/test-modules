@@ -41,6 +41,13 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   }
 
   binding {
+    role    = "roles/compute.osLoginExternalUser"
+    members = [
+      "group:${var.external_user_os_login_group}",
+    ]
+  }
+
+  binding {
     role    = "roles/securitycenter.admin"
     members = [
       "group:${var.security_admins_group}",

@@ -37,6 +37,11 @@ variable "security_admins_group" {
   description = "Must be group. Group identity of security admins"
 }
 
+variable "external_user_os_login_group" {
+  type        = string
+  description = "Must be group. Group identity of users who are external to org, but require os login access"
+}
+
 variable "sre_group" {
   type        = string
   description = "Must be group. Group identity of SREs"
