@@ -18,7 +18,7 @@
  *****************************************/
 
 resource "google_compute_subnetwork" "subnet" {
-  provider      = "google-beta"
+  provider      = google-beta
   project       = var.project_id
   ip_cidr_range = var.cidr
   name          = "${var.network_name}-${var.region}-${var.subnet_number}"
