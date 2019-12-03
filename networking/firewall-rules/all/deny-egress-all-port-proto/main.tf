@@ -18,7 +18,7 @@
  *****************************************/
 
 resource "google_compute_firewall" "firewall_rule" {
-  provider            = "google-beta"
+  provider            = google-beta
   project             = var.project_id
   name                = "${var.network_name}-deny-all-egress-all"
   network             = var.network_self_link
