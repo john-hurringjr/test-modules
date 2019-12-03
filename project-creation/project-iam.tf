@@ -24,7 +24,6 @@ resource "google_service_account" "new_project_default_service_account" {
   account_id  = "default"
 }
 
-
 /******************************************
   IAM Policy Data
  *****************************************/
@@ -385,6 +384,13 @@ data "google_iam_policy" "project_iam_policy_data" {
       "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/run.serviceAgent"
+    members = [
+      "serviceAccount:service-${google_project.project.number}@serverless-robot-prod.iam.gserviceaccount.com",
     ]
   }
 
