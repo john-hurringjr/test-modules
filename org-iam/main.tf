@@ -27,6 +27,20 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   }
 
   binding {
+    role    = "roles/iam.serviceAccountCreator"
+    members = [
+      "serviceAccount:${var.terraform_service_account}",
+    ]
+  }
+
+  binding {
+    role    = "roles/iam.serviceAccountDeleter"
+    members = [
+      "serviceAccount:${var.terraform_service_account}",
+    ]
+  }
+
+  binding {
     role    = "roles/compute.securityAdmin"
     members = [
       "group:${var.security_admins_group}",
