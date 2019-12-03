@@ -14,7 +14,7 @@
  */
 
 /******************************************
-  Project
+  Project Creation
  *****************************************/
 
 resource "google_project" "project" {
@@ -28,4 +28,13 @@ resource "google_project" "project" {
     restrictions  = var.label_restrictions
   }
 
+}
+
+/******************************************
+  Promote Project to Shared VPC Host Project
+ *****************************************/
+
+resource "google_compute_shared_vpc_host_project" "promote_to_host" {
+  depends_on  = [google_project_service.enable_compute_api]
+  project     = google_project.project.id
 }

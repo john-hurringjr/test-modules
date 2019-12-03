@@ -65,8 +65,14 @@ variable "label_restrictions" {
   default     = ""
 }
 
-variable "project_admin_group_id" {
-  description = "Group who will have admin permissions for project"
+variable "network_admin_group_id" {
+  description = "Group who will have admin permissions for project except to create/delete firewall rules."
+  type        = string
+  default     = ""
+}
+
+variable "security_admin_group_id" {
+  description = "Group who will have ability to create/delete firewall rules for project. May be same group as network admins."
   type        = string
   default     = ""
 }
