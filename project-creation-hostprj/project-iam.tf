@@ -78,8 +78,9 @@ resource "google_project_iam_binding" "compute_instance_admin" {
   ]
 }
 
-//
-//resource "google_project_iam_binding" "editor_remove" {
-//  members = []
-//  role = "roles/editor"
-//}
+
+resource "google_project_iam_binding" "editor_remove" {
+  project = google_project.project.id
+  members = []
+  role = "roles/editor"
+}
