@@ -424,11 +424,30 @@ data "google_iam_policy" "project_iam_policy_data" {
 }
 
 /******************************************
-  IAM Policy Applied
+  IAM Policy Applied to Project
  *****************************************/
 
 resource "google_project_iam_policy" "project_iam_policy" {
   depends_on  = [google_project.project, google_project_service.enable_compute_api, google_service_account.new_project_default_service_account, google_project_service.enable_gke_api]
   policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
   project     = google_project.project.id
+}
+
+/******************************************
+  Shared VPC Host Project Network User IAM
+ *****************************************/
+
+resource "google_project_iam_member" "cloud_services" {
+  member  = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
+  role    = "roles/compute.networkUser"
+}
+
+resource "google_project_iam_member" "new_default_service_account" {
+  member  = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
+  role    = "roles/compute.networkUser"
+}
+
+resource "google_project_iam_member" "project_admin_group" {
+  member  = "group:${var.project_admin_group_id}"
+  role    = "roles/compute.networkUser"
 }

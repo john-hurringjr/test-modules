@@ -25,9 +25,8 @@ resource "google_service_account" "new_project_default_service_account" {
 }
 
 /******************************************
-  IAM Bindings
+  Project IAM Bindings
  *****************************************/
-
 
 resource "google_project_iam_binding" "logging_amin" {
   role = "roles/logging.admin"
