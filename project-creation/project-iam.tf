@@ -427,9 +427,8 @@ data "google_iam_policy" "project_iam_policy_data" {
   IAM Policy Applied
  *****************************************/
 
-# Wait to see what other SA's need to be added to data
-//resource "google_project_iam_policy" "project_iam_policy" {
-//  depends_on = [google_project.project, google_project_service.enable_compute_api, google_service_account.new_project_default_service_account, google_project_service.enable_gke_api]
-//  policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
-//  project     = google_project.project.id
-//}
+resource "google_project_iam_policy" "project_iam_policy" {
+  depends_on  = [google_project.project, google_project_service.enable_compute_api, google_service_account.new_project_default_service_account, google_project_service.enable_gke_api]
+  policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
+  project     = google_project.project.id
+}
