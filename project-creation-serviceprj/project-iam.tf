@@ -438,16 +438,19 @@ resource "google_project_iam_policy" "project_iam_policy" {
  *****************************************/
 
 resource "google_project_iam_member" "cloud_services" {
+  project = var.shared_vpc_host_project_id
   member  = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
   role    = "roles/compute.networkUser"
 }
 
 resource "google_project_iam_member" "new_default_service_account" {
+  project = var.shared_vpc_host_project_id
   member  = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
   role    = "roles/compute.networkUser"
 }
 
 resource "google_project_iam_member" "project_admin_group" {
+  project = var.shared_vpc_host_project_id
   member  = "group:${var.project_admin_group_id}"
   role    = "roles/compute.networkUser"
 }
