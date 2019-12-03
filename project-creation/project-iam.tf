@@ -237,7 +237,7 @@ data "google_iam_policy" "project_iam_policy_data" {
   }
 
   binding {
-    role = "container.serviceAgent"
+    role = "roles/container.serviceAgent"
     members = [
       "serviceAccount:service-${google_project.project.number}@container-engine-robot.iam.gserviceaccount.com",
     ]
