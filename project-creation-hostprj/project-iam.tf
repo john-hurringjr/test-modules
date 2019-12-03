@@ -84,3 +84,9 @@ resource "google_project_iam_binding" "editor_remove" {
   members = []
   role = "roles/editor"
 }
+
+resource "google_project_iam_binding" "owner_remove" {
+  project = google_project.project.id
+  members = []
+  role = "roles/owner"
+}
