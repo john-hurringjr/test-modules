@@ -171,6 +171,13 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  binding {
+    role = "roles/threatdetection.editor"
+    members = [
+      "serviceAccount:${var.terraform_service_account}", "group:${var.security_admins_group}"
+    ]
+  }
+
 //  binding {
 //    role = "roles/organizationViewer"
 //    members = [
