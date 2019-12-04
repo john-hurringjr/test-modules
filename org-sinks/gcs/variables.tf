@@ -52,7 +52,8 @@ variable "gcs_bucket_name" {
 
 variable "sink_filter" {
   type        = string
-  description = "Any filters desired for sink. Leave blank to recieve all logs"
+  description = "Any filters desired for sink. Leave blank to recieve all logs. Default is blank"
+  default     = ""
 }
 
 variable "organization_id" {
