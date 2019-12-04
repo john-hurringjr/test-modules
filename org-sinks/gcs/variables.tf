@@ -22,6 +22,12 @@ variable "project_id" {
   description = "Project ID which will host the gcs bucket for org sink"
 }
 
+variable "gcs_bucket_policy_only" {
+  type        = bool
+  description = "Forces bucket policy only, not allowing individual object ACLs. Default is true. If using org policy forcing bucket policy, leave as true or creation will fail"
+  default     = true
+}
+
 variable "gcs_bucket_lock_enabled" {
   type        = bool
   description = "If enabled will not allow deletion of objects until their age reaches defined retention period. Default is false. WARNING: Locking a bucket is an irreversible action."

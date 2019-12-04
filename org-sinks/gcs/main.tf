@@ -22,6 +22,9 @@ resource "google_storage_bucket" "sink_bucket" {
   location  = var.gcs_bucket_location
   name      = var.gcs_bucket_name
 
+  bucket_policy_only = true
+
+
   retention_policy {
     is_locked         = var.gcs_bucket_lock_enabled
     retention_period  = var.gcs_bucket_retention_period

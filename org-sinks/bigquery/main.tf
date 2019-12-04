@@ -30,7 +30,7 @@ resource "google_bigquery_dataset" "sink_dataset" {
  *****************************************/
 
 resource "google_logging_organization_sink" "org_log_sink" {
-  destination       = "bigquery.googleapis.com/projects/${var.project_id}/datasets/${google_bigquery_dataset.sink_dataset.id}"
+  destination       = "bigquery.googleapis.com/projects/${var.project_id}/datasets/${google_bigquery_dataset.sink_dataset.dataset_id}"
   name              = var.sink_name
   org_id            = var.organization_id
   include_children  = true
