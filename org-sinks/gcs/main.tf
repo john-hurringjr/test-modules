@@ -72,6 +72,6 @@ resource "google_logging_organization_sink" "org_log_sink" {
 
 resource "google_storage_bucket_iam_member" "gcs_sink_writer_permission" {
   bucket  = google_storage_bucket.sink_bucket.name
-  member  = "serviceAccount:${google_logging_organization_sink.org_log_sink.writer_identity}"
+  member  = google_logging_organization_sink.org_log_sink.writer_identity
   role    = "roles/storage.objectWriter"
 }
