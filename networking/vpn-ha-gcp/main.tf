@@ -73,8 +73,8 @@ resource "google_compute_vpn_tunnel" "ha_vpn_vpc_1_tunnel_1" {
   router          = google_compute_router.ha_vpn_router_vpc_1.self_link
   shared_secret   = var.shared_secret_tunnel_1
 
-  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.name
-  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.name
+  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.self_link
+  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.self_link
   vpn_gateway_interface = 0
 }
 
@@ -86,8 +86,8 @@ resource "google_compute_vpn_tunnel" "ha_vpn_vpc_2_tunnel_1" {
   router          = google_compute_router.ha_vpn_router_vpc_2.self_link
   shared_secret   = var.shared_secret_tunnel_1
 
-  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.name
-  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.name
+  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.self_link
+  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.self_link
   vpn_gateway_interface = 0
 }
 
@@ -103,8 +103,8 @@ resource "google_compute_vpn_tunnel" "ha_vpn_vpc_1_tunnel_2" {
   router          = google_compute_router.ha_vpn_router_vpc_1.self_link
   shared_secret   = var.shared_secret_tunnel_2
 
-  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.name
-  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.name
+  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.self_link
+  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.self_link
   vpn_gateway_interface = 1
 }
 
@@ -116,8 +116,8 @@ resource "google_compute_vpn_tunnel" "ha_vpn_vpc_2_tunnel_2" {
   router          = google_compute_router.ha_vpn_router_vpc_2.self_link
   shared_secret   = var.shared_secret_tunnel_2
 
-  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.name
-  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.name
+  vpn_gateway           = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_2.self_link
+  peer_gcp_gateway      = google_compute_ha_vpn_gateway.ha_vpn_gateway_vpc_1.self_link
   vpn_gateway_interface = 1
 }
 
