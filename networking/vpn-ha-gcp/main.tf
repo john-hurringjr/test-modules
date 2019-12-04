@@ -137,7 +137,7 @@ resource "google_compute_router_interface" "ha_vpn_vpc_1_router_interface_1" {
 
 resource "google_compute_router_interface" "ha_vpn_vpc_1_router_interface_2" {
   provider    = google-beta
-  name        = "${var.network_1_name}-ha-vpn-router-${var.region}-interface-1"
+  name        = "${var.network_1_name}-ha-vpn-router-${var.region}-interface-2"
   router      = google_compute_router.ha_vpn_router_vpc_1.name
   region      = var.region
   project     = var.project_1_id
@@ -157,7 +157,7 @@ resource "google_compute_router_interface" "ha_vpn_vpc_2_router_interface_1" {
 
 resource "google_compute_router_interface" "ha_vpn_vpc_2_router_interface_2" {
   provider    = google-beta
-  name        = "${var.network_2_name}-ha-vpn-router-${var.region}-interface-1"
+  name        = "${var.network_2_name}-ha-vpn-router-${var.region}-interface-2"
   router      = google_compute_router.ha_vpn_router_vpc_2.name
   region      = var.region
   project     = var.project_2_id
@@ -187,7 +187,7 @@ resource "google_compute_router_peer" "ha_vpn_vpc_1_peer_2" {
   region                    = var.region
   peer_ip_address           = "169.254.1.2"
   interface                 = google_compute_router_interface.ha_vpn_vpc_1_router_interface_2.name
-  name                      = "${var.network_1_name}-ha-vpn-router-${var.region}-peer-1"
+  name                      = "${var.network_1_name}-ha-vpn-router-${var.region}-peer-2"
   peer_asn                  = var.network_2_router_bgp_asn
   advertised_route_priority = 100
   router                    = google_compute_router.ha_vpn_router_vpc_1.name
@@ -211,7 +211,7 @@ resource "google_compute_router_peer" "ha_vpn_vpc_2_peer_2" {
   region                    = var.region
   peer_ip_address           = "169.254.1.1"
   interface                 = google_compute_router_interface.ha_vpn_vpc_2_router_interface_2.name
-  name                      = "${var.network_2_name}-ha-vpn-router-${var.region}-peer-1"
+  name                      = "${var.network_2_name}-ha-vpn-router-${var.region}-peer-2"
   peer_asn                  = var.network_1_router_bgp_asn
   advertised_route_priority = 100
   router                    = google_compute_router.ha_vpn_router_vpc_2.name
