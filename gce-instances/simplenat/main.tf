@@ -32,6 +32,7 @@ resource "google_compute_instance" "nat_instance" {
   machine_type    = var.machine_type
   name            = var.instance_name
   can_ip_forward  = true
+  tags            = [var.instance_network_tag, ]
 
   service_account {
     email = google_service_account.instance_service_account.email
