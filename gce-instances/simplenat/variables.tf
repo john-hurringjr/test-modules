@@ -57,8 +57,7 @@ variable "instance_disk_size" {
 }
 
 variable "instance_network_tag" {
-  description = "A network tag to apply to instance. May be used to help provide instance different route than rest of vpc. Default is allow-default-internet-gateway-access"
+  description = "A network tag to apply to instance. May be used to help provide instance different route than rest of vpc."
   type        = string
-  default     = "allow-default-internet-gateway-access"
 
 }
