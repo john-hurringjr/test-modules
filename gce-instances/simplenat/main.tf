@@ -47,7 +47,7 @@ resource "google_compute_instance" "nat_instance" {
     }
   }
 
-  metadata_startup_script = file("./startup-script.sh")
+  metadata_startup_script = file("${path.module}/startup-script.sh")
 
   network_interface {
     subnetwork = var.subnet_self_link
