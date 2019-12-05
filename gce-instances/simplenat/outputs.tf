@@ -24,3 +24,7 @@ output "instance_service_account_email" {
 output "instance_self_link" {
   value = google_compute_instance.nat_instance.self_link
 }
+
+output "instance_network_tag" {
+  value = google_compute_instance.nat_instance.tags
+}
