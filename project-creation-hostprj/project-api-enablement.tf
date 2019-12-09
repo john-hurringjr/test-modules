@@ -19,28 +19,28 @@
 
 resource "google_project_service" "enable_compute_api" {
   depends_on          = [google_project.project]
-  project             = google_project.project.id
+  project             = google_project.project.project_id
   service             = "compute.googleapis.com"
   disable_on_destroy  = false
 }
 
 resource "google_project_service" "enable_logging_api" {
   depends_on          = [google_project.project]
-  project             = google_project.project.id
+  project             = google_project.project.project_id
   service             = "logging.googleapis.com"
   disable_on_destroy  = false
 }
 
 resource "google_project_service" "enable_oslogin_api" {
   depends_on          = [google_project.project]
-  project             = google_project.project.id
+  project             = google_project.project.project_id
   service             = "oslogin.googleapis.com"
   disable_on_destroy  = false
 }
 
 resource "google_project_service" "enable_dns_api" {
   depends_on          = [google_project.project]
-  project             = google_project.project.id
+  project             = google_project.project.project_id
   service             = "dns.googleapis.com"
   disable_on_destroy  = false
 }
