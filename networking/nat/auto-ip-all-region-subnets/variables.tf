@@ -20,29 +20,24 @@
 variable "project_id" {
   description = "Identifies project where this nat will be applied."
   type        = string
-  default     = ""
 }
 
 variable "network_self_link" {
   description = "Self link of vpc which the nat will be applied."
   type        = string
-  default     = ""
 }
 
 variable "network_name" {
   description = "Name of VPC which the nat will be applied. Will be used to construct router and nat names."
   type        = string
-  default     = ""
 }
 
 variable "cloud_router_asn_number" {
   description = "Router ASN number to be used. "
   type        = number
-  default     = ""
 }
 
 variable "nat_region" {
   description = "Region which will host the router and nat. Region where subnets which will have access to nat reside."
   type        = string
-  default     = ""
 }
