@@ -32,13 +32,13 @@ resource "google_service_account" "new_project_default_service_account" {
 # Allows Admins to View what permissions they have on a project
 resource "google_project_iam_binding" "view_project_iam" {
   project = google_project.project.id
-  role    = "roles/iam.roleViewer"
+  role    = "roles/browser"
   members = [
     "group:${var.network_admin_group_id}",
   ]
 }
 
-resource "google_project_iam_binding" "logging_amin" {
+resource "google_project_iam_binding" "logging_admin" {
   project = google_project.project.id
   role    = "roles/logging.admin"
   members = [
@@ -92,13 +92,13 @@ resource "google_project_iam_binding" "compute_instance_admin" {
 resource "google_project_iam_binding" "editor_remove" {
   depends_on = [google_project_service.enable_compute_api]
   project = google_project.project.id
-  members = []
+  members = ["",]
   role = "roles/editor"
 }
 
 resource "google_project_iam_binding" "owner_remove" {
   depends_on = [google_project_service.enable_compute_api]
   project = google_project.project.id
-  members = []
+  members = ["",]
   role = "roles/owner"
 }

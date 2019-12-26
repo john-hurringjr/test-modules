@@ -32,7 +32,7 @@ data "google_iam_policy" "project_iam_policy_data" {
 
   # Allows Admins to View what permissions they have on a project
   binding {
-    role = "roles/iam.roleViewer"
+    role = "roles/browser"
     members = [
       "group:${var.project_admin_group_id}",
     ]
