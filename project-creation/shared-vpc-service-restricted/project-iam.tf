@@ -30,13 +30,13 @@ resource "google_service_account" "new_project_default_service_account" {
 
 data "google_iam_policy" "project_iam_policy_data" {
 
-  # Allows Admins to View what permissions they have on a project
-  binding {
-    role = "roles/browser"
-    members = [
-      "group:${var.project_admin_group_id}",
-    ]
-  }
+//  # Allows Admins to View what permissions they have on a project
+//  binding {
+//    role = "roles/browser"
+//    members = [
+//      "group:${var.project_admin_group_id}",
+//    ]
+//  }
 
 
   # Project Admins & Appropriate Service Accounts
