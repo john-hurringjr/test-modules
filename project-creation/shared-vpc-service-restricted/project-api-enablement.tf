@@ -81,7 +81,7 @@ resource "google_project_service" "enable_storage_transfer_api" {
 }
 
 resource "google_project_service" "enable_dataflow_api" {
-  depends_on          = [google_project.project]
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
   project             = google_project.project.project_id
   service             = "dataflow.googleapis.com"
   disable_on_destroy  = false
@@ -123,7 +123,7 @@ resource "google_project_service" "enable_binaryauthorization_api" {
 }
 
 resource "google_project_service" "enable_oslogin_api" {
-  depends_on          = [google_project.project]
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
   project             = google_project.project.project_id
   service             = "oslogin.googleapis.com"
   disable_on_destroy  = false

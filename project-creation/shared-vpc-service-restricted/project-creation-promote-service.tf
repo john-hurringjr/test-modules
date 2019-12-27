@@ -35,7 +35,7 @@ resource "google_project" "project" {
  *****************************************/
 
 resource "google_compute_shared_vpc_service_project" "promote_service_project" {
-  depends_on      = [google_project_service.enable_compute_api]
+  depends_on      = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
   host_project    = var.shared_vpc_host_project_id
   service_project = google_project.project.id
 }

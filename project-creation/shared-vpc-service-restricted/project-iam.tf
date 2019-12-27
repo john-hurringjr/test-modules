@@ -19,7 +19,7 @@
  *****************************************/
 
 resource "google_service_account" "new_project_default_service_account" {
-  depends_on  = [google_project.project]
+  depends_on  = [google_project.project, google_project_service.enable_compute_api]
   project     = google_project.project.id
   account_id  = "default"
 }
@@ -447,12 +447,14 @@ resource "google_project_iam_policy" "project_iam_policy" {
  *****************************************/
 
 resource "google_project_iam_member" "cloud_services" {
+  depends_on = [google_project_service.enable_compute_api, google_project.project]
   project = var.shared_vpc_host_project_id
   member  = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
   role    = "roles/compute.networkUser"
 }
 
 resource "google_project_iam_member" "new_default_service_account" {
+  depends_on = [google_project_service.enable_compute_api, google_project.project, google_service_account.new_project_default_service_account]
   project = var.shared_vpc_host_project_id
   member  = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
   role    = "roles/compute.networkUser"
