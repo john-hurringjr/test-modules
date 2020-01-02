@@ -20,7 +20,7 @@
 
 resource "google_service_account" "new_project_default_service_account" {
   depends_on  = [google_project.project, google_project_service.enable_compute_api]
-  project     = google_project.project.id
+  project     = google_project.project.project_id
   account_id  = "default"
 }
 
@@ -219,7 +219,6 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-
   binding {
     role = "roles/container.admin"
     members = [
@@ -242,7 +241,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:service-${google_project.project.number}@container-engine-robot.iam.gserviceaccount.com",
     ]
   }
-
 
   binding {
     role = "roles/dataflow.admin"
@@ -430,7 +428,7 @@ data "google_iam_policy" "project_iam_policy_data" {
 resource "google_project_iam_policy" "project_iam_policy" {
   depends_on  = [google_project.project, google_project_service.enable_compute_api, google_service_account.new_project_default_service_account, google_project_service.enable_gke_api]
   policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
-  project     = google_project.project.id
+  project     = google_project.project.project_id
 }
 
 /******************************************

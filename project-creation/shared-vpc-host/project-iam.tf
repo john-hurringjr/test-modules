@@ -20,7 +20,7 @@
 
 resource "google_service_account" "new_project_default_service_account" {
   depends_on  = [google_project.project]
-  project     = google_project.project.id
+  project = google_project.project.project_id
   account_id  = "default"
 }
 
@@ -29,7 +29,7 @@ resource "google_service_account" "new_project_default_service_account" {
  *****************************************/
 
 resource "google_project_iam_binding" "logging_admin" {
-  project = google_project.project.id
+  project = google_project.project.project_id
   role    = "roles/logging.admin"
   members = [
     "group:${var.network_admin_group_id}",
@@ -39,7 +39,7 @@ resource "google_project_iam_binding" "logging_admin" {
 }
 
 resource "google_project_iam_binding" "network_admin" {
-  project = google_project.project.id
+  project = google_project.project.project_id
   role    = "roles/compute.networkAdmin"
   members = [
     "group:${var.network_admin_group_id}",
@@ -49,7 +49,7 @@ resource "google_project_iam_binding" "network_admin" {
 }
 
 resource "google_project_iam_binding" "compute_security_admin" {
-  project = google_project.project.id
+  project = google_project.project.project_id
   role    = "roles/compute.securityAdmin"
   members = [
     "group:${var.security_admin_group_id}",
@@ -59,7 +59,7 @@ resource "google_project_iam_binding" "compute_security_admin" {
 }
 
 resource "google_project_iam_binding" "service_account_user" {
-  project = google_project.project.id
+  project = google_project.project.project_id
   role    = "roles/iam.serviceAccountUser"
   members = [
     "group:${var.network_admin_group_id}",
@@ -69,7 +69,7 @@ resource "google_project_iam_binding" "service_account_user" {
 }
 
 resource "google_project_iam_binding" "compute_instance_admin" {
-  project = google_project.project.id
+  project = google_project.project.project_id
   role    = "roles/compute.instanceAdmin.v1"
   members = [
     "group:${var.network_admin_group_id}",
@@ -80,16 +80,16 @@ resource "google_project_iam_binding" "compute_instance_admin" {
 
 # Remove below for now, need to test if/how to clear binding for these
 
-//resource "google_project_iam_binding" "editor_remove" {
-//  depends_on = [google_project_service.enable_compute_api]
-//  project = google_project.project.id
-//  members = ["",]
-//  role = "roles/editor"
-//}
-//
-//resource "google_project_iam_binding" "owner_remove" {
-//  depends_on = [google_project_service.enable_compute_api]
-//  project = google_project.project.id
-//  members = ["",]
-//  role = "roles/owner"
-//}
+resource "google_project_iam_binding" "editor_remove" {
+  depends_on = [google_project_service.enable_compute_api]
+  project = google_project.project.project_id
+  members = ["",]
+  role = "roles/editor"
+}
+
+resource "google_project_iam_binding" "owner_remove" {
+  depends_on = [google_project_service.enable_compute_api]
+  project = google_project.project.project_id
+  members = ["",]
+  role = "roles/owner"
+}
