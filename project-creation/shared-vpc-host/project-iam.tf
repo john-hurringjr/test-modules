@@ -77,19 +77,3 @@ resource "google_project_iam_binding" "compute_instance_admin" {
     "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
   ]
 }
-
-# Remove below for now, need to test if/how to clear binding for these
-
-resource "google_project_iam_binding" "editor_remove" {
-  depends_on = [google_project_service.enable_compute_api]
-  project = google_project.project.project_id
-  members = ["",]
-  role = "roles/editor"
-}
-
-resource "google_project_iam_binding" "owner_remove" {
-  depends_on = [google_project_service.enable_compute_api]
-  project = google_project.project.project_id
-  members = ["",]
-  role = "roles/owner"
-}
