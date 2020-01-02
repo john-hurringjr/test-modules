@@ -28,16 +28,6 @@ resource "google_service_account" "new_project_default_service_account" {
   Project IAM Bindings
  *****************************************/
 
-
-# Allows Admins to View what permissions they have on a project
-resource "google_project_iam_binding" "view_project_iam" {
-  project = google_project.project.id
-  role    = "roles/browser"
-  members = [
-    "group:${var.network_admin_group_id}",
-  ]
-}
-
 resource "google_project_iam_binding" "logging_admin" {
   project = google_project.project.id
   role    = "roles/logging.admin"
