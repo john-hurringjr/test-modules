@@ -45,6 +45,7 @@ variable "sink_subscription_service_account_name" {
 variable "sink_filter" {
   type        = string
   description = "Any filters desired for sink. Leave blank to recieve all logs"
+  default     = ""
 }
 
 variable "billing_account" {
