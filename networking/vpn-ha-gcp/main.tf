@@ -17,29 +17,29 @@
   Router Creation
  *****************************************/
 
-resource "google_compute_router" "ha_vpn_router_vpc_1" {
-  project = var.project_1_id
-  network = var.network_1_name
-  region  = var.region
-  name    = "${var.network_1_name}-ha-vpn-router-${var.region}"
-
-  bgp {
-    asn = var.network_1_router_bgp_asn
-  }
-
-}
-
-resource "google_compute_router" "ha_vpn_router_vpc_2" {
-  project = var.project_2_id
-  network = var.network_2_name
-  region  = var.region
-  name    = "${var.network_2_name}-ha-vpn-router-${var.region}"
-
-  bgp {
-    asn = var.network_2_router_bgp_asn
-  }
-
-}
+//resource "google_compute_router" "ha_vpn_router_vpc_1" {
+//  project = var.project_1_id
+//  network = var.network_1_name
+//  region  = var.region
+//  name    = "${var.network_1_name}-ha-vpn-router-${var.region}"
+//
+//  bgp {
+//    asn = var.network_1_router_bgp_asn
+//  }
+//
+//}
+//
+//resource "google_compute_router" "ha_vpn_router_vpc_2" {
+//  project = var.project_2_id
+//  network = var.network_2_name
+//  region  = var.region
+//  name    = "${var.network_2_name}-ha-vpn-router-${var.region}"
+//
+//  bgp {
+//    asn = var.network_2_router_bgp_asn
+//  }
+//
+//}
 
 /******************************************
   Gateway Creation

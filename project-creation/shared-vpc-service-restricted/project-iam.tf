@@ -436,7 +436,7 @@ resource "google_project_iam_policy" "project_iam_policy" {
  *****************************************/
 
 resource "google_project_iam_member" "cloud_services" {
-  depends_on = [google_project_service.enable_compute_api, google_project.project]
+  depends_on = [google_project_service.enable_compute_api, google_project.project, google_project_service.enable_dataflow_api]
   project = var.shared_vpc_host_project_id
   member  = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
   role    = "roles/compute.networkUser"
