@@ -22,11 +22,9 @@ resource "google_compute_router" "ha_vpn_router_vpc_1" {
   network = var.network_1_name
   region  = var.region
   name    = "${var.network_1_name}-ha-vpn-router-${var.region}"
-
   bgp {
     asn = var.network_1_router_bgp_asn
   }
-
 }
 
 resource "google_compute_router" "ha_vpn_router_vpc_2" {
@@ -34,11 +32,14 @@ resource "google_compute_router" "ha_vpn_router_vpc_2" {
   network = var.network_2_name
   region  = var.region
   name    = "${var.network_2_name}-ha-vpn-router-${var.region}"
-
   bgp {
-    asn = var.network_2_router_bgp_asn
+    asn               = var.network_2_router_bgp_asn
+    advertise_mode    = "CUSTOM"
+    advertised_groups = ["ALL_SUBNETS"]
+    advertised_ip_ranges {
+      range = var.custom_range
+    }
   }
-
 }
 
 /******************************************

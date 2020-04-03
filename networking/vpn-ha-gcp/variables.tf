@@ -80,3 +80,8 @@ variable "region" {
   default     = ""
 }
 
+variable "custom_range" {
+  description = "Custom range to exchange either restricted or private apis. Default is private: 199.36.153.8/30. Other option may be restricted: 199.36.153.4/30"
+  type        = string
+  default     = "199.36.153.8/30"
+}
