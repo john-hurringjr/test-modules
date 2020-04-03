@@ -64,3 +64,9 @@ variable "vpc_flow_log_sampling" {
   type        = number
   default     = 0.5
 }
+
+variable "private_google_access" {
+  description = "Enable private Google Access for subnet. Default is true"
+  type        = bool
+  default     = true
+}
