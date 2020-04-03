@@ -14,23 +14,11 @@
  */
 
 /******************************************
-  Subnet
+  VPC SC Perimeter
  *****************************************/
 
-resource "google_compute_subnetwork" "subnet" {
-  provider      = google-beta
-  project       = var.project_id
-  ip_cidr_range = var.cidr
-  name          = "${var.network_name}-${var.region}-${var.subnet_number}"
-  network       = var.network_self_link
-  region        = var.region
-
-  private_ip_google_access = true
-
-  log_config {
-    aggregation_interval  = var.vpc_flow_log_interval
-    flow_sampling         = var.vpc_flow_log_sampling
-    metadata              = "INCLUDE_ALL_METADATA"
-  }
-
+resource "google_access_context_manager_service_perimeter_resource" "service_perimeter_resource_add" {
+  depends_on      = [google_project.project, google_project_service.enable_compute_api, google_project_service.enable_dataflow_api, google_compute_shared_vpc_service_project.promote_service_project]
+  perimeter_name  = var.service_perimeter_name
+  resource        = google_project.project.number
 }

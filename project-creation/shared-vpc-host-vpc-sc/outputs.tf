@@ -14,23 +14,17 @@
  */
 
 /******************************************
-  Subnet
+  Outputs
  *****************************************/
 
-resource "google_compute_subnetwork" "subnet" {
-  provider      = google-beta
-  project       = var.project_id
-  ip_cidr_range = var.cidr
-  name          = "${var.network_name}-${var.region}-${var.subnet_number}"
-  network       = var.network_self_link
-  region        = var.region
+output "project_number" {
+  value = google_project.project.number
+}
 
-  private_ip_google_access = true
+output "project_id" {
+  value = google_project.project.project_id
+}
 
-  log_config {
-    aggregation_interval  = var.vpc_flow_log_interval
-    flow_sampling         = var.vpc_flow_log_sampling
-    metadata              = "INCLUDE_ALL_METADATA"
-  }
-
+output "service_account_email" {
+  value = google_service_account.new_project_default_service_account.email
 }
