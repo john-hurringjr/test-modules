@@ -19,6 +19,19 @@
 
 data "google_iam_policy" "org_node_iam_policy_data" {
 
+  audit_config {
+    service = "allServices"
+    audit_log_configs {
+      log_type = "DATA_WRITE",
+    }
+    audit_log_configs {
+      log_type = "ADMIN_READ",
+    }
+    audit_log_configs {
+      log_type = "DATA_READ",
+    }
+  }
+
   binding {
     role    = "roles/resourcemanager.organizationAdmin"
     members = [
