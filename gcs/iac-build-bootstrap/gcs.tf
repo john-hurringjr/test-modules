@@ -57,7 +57,7 @@ resource "google_storage_bucket_object" "shared_services_resources_vars" {
 
 resource "google_storage_bucket_object" "prod_projects_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "/05-prod-projects/test/"
+  name    = "05-prod-projects/"
   content = " "
 }
 
@@ -76,6 +76,12 @@ resource "google_storage_bucket_object" "prod_resources_vars" {
 resource "google_storage_bucket_object" "non_prod_resources_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
   name    = "08-non-prod-resources/"
+  content = " "
+}
+
+resource "google_storage_bucket_object" "error_logs" {
+  bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
+  name    = "00-error-logs/"
   content = " "
 }
 
