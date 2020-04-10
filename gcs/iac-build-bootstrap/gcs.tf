@@ -34,25 +34,25 @@ resource "google_storage_bucket" "gcs_bucket_for_backend_var_files" {
 resource "google_storage_bucket_object" "org_node_stuff_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
   name    = "01-org-node-stuff/"
-  content = " "
+  content = "/"
 }
 
 resource "google_storage_bucket_object" "folder_structure_and_policies_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "02-folder-structure-and-policies/"
+  name    = "/02-folder-structure-and-policies/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "shared_services_projects_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
   name    = "03-shared-services-projects/"
-  content = " "
+  content = "object/"
 }
 
 resource "google_storage_bucket_object" "shared_services_resources_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
   name    = "04-shared-services-resources/"
-  content = " "
+  content = "/object/"
 }
 
 resource "google_storage_bucket_object" "prod_projects_vars" {
