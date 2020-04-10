@@ -76,3 +76,15 @@ variable "service_perimeter_name" {
   type        = "string"
   default     = ""
 }
+
+variable "nework_user_sa_group" {
+  description = "Group to be used for all SA's that need to be network user on project"
+  type        = "string"
+  default     = ""
+}
+
+variable "network_user_groups" {
+  description = "Groups that need to have network user on project. Will nest groups"
+  type        = "string"
+  default     = ""
+}

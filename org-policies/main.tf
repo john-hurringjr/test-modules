@@ -81,6 +81,29 @@ resource "google_organization_policy" "external_ip_restricted" {
 
 }
 
+resource "google_organization_policy" "disable_vm_ip_forward" {
+  constraint  = "compute.compute.vmCanIpForward"
+  org_id      = var.organization_id
+
+  list_policy {
+    deny {
+      all = true
+    }
+  }
+
+}
+
+resource "google_organization_policy" "disable_auto_iam_default_sa" {
+  constraint  = "iam.automaticIamGrantsForDefaultServiceAccounts"
+  org_id      = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+
 # Disable ability to create Cloud SQL with public IP
 resource "google_organization_policy" "cloud_sql_restrict_public_ip" {
   constraint  = "constraints/sql.restrictPublicIp"
@@ -120,6 +143,17 @@ resource "google_organization_policy" "skip_default_network_creation" {
 resource "google_organization_policy" "force_gcs_bucket_iam_only" {
   constraint  = "constraints/storage.uniformBucketLevelAccess"
   org_id      = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+
+resource "google_organization_policy" "app_engine_disable_source_code_download" {
+  constraint = "constraints/appengine.disableCodeDownload"
+  org_id = var.organization_id
 
   boolean_policy {
     enforced = true
