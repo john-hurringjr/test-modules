@@ -33,49 +33,49 @@ resource "google_storage_bucket" "gcs_bucket_for_backend_var_files" {
 
 resource "google_storage_bucket_object" "org_node_stuff_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "01-org-node-stuff"
+  name    = "01-org-node-stuff/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "folder_structure_and_policies_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "02-folder-structure-and-policies"
+  name    = "02-folder-structure-and-policies/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "shared_services_projects_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "03-shared-services-projects"
+  name    = "03-shared-services-projects/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "shared_services_resources_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "04-shared-services-resources"
+  name    = "04-shared-services-resources/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "prod_projects_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "05-prod-projects"
+  name    = "05-prod-projects/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "non_prod_projects_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "06-non-prod-projects"
+  name    = "06-non-prod-projects/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "prod_resources_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "07-prod-resources"
+  name    = "07-prod-resources/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "non_prod_resources_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "08-non-prod-resources"
+  name    = "08-non-prod-resources/"
   content = " "
 }
 
@@ -101,31 +101,31 @@ resource "google_storage_bucket" "gcs_bucket_for_state_files" {
 
 resource "google_storage_bucket_object" "org_node_stuff_state" {
   bucket  = google_storage_bucket.gcs_bucket_for_state_files.name
-  name    = "01-org-node-stuff"
+  name    = "01-org-node-stuff/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "folder_structure_and_policies_state" {
   bucket  = google_storage_bucket.gcs_bucket_for_state_files.name
-  name    = "02-folder-structure-and-policies"
+  name    = "02-folder-structure-and-policies/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "shared_services_projects_state" {
   bucket  = google_storage_bucket.gcs_bucket_for_state_files.name
-  name    = "03-shared-services-projects"
+  name    = "03-shared-services-projects/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "shared_services_resources_state" {
   bucket  = google_storage_bucket.gcs_bucket_for_state_files.name
-  name    = "04-shared-services-resources"
+  name    = "04-shared-services-resources/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "prod_projects_state" {
   bucket  = google_storage_bucket.gcs_bucket_for_state_files.name
-  name    = "05-prod-projects"
+  name    = "05-prod-projects/"
   content = " "
 }
 
@@ -137,12 +137,12 @@ resource "google_storage_bucket_object" "non_prod_projects_state" {
 
 resource "google_storage_bucket_object" "prod_resources_state" {
   bucket  = google_storage_bucket.gcs_bucket_for_state_files.name
-  name    = "07-prod-resources"
+  name    = "07-prod-resources/"
   content = " "
 }
 
 resource "google_storage_bucket_object" "non_prod_resources_state" {
   bucket  = google_storage_bucket.gcs_bucket_for_state_files.name
-  name    = "08-non-prod-resources"
+  name    = "08-non-prod-resources/"
   content = " "
 }
