@@ -33,14 +33,14 @@ resource "google_storage_bucket" "gcs_bucket_for_backend_var_files" {
 
 resource "google_storage_bucket_object" "org_node_stuff_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "01-org-node-stuff/"
-  content = "/"
+  name    = "01-org-node-stuff/blankforfolder"
+  content = "nada"
 }
 
 resource "google_storage_bucket_object" "folder_structure_and_policies_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "/02-folder-structure-and-policies/"
-  content = " "
+  name    = "/02-folder-structure-and-policies/blankforfolder"
+  content = "nada2"
 }
 
 resource "google_storage_bucket_object" "shared_services_projects_vars" {
@@ -57,8 +57,8 @@ resource "google_storage_bucket_object" "shared_services_resources_vars" {
 
 resource "google_storage_bucket_object" "prod_projects_vars" {
   bucket  = google_storage_bucket.gcs_bucket_for_backend_var_files.name
-  name    = "05-prod-projects/"
-  content = " "
+  name    = "/05-prod-projects/test/"
+  content = "object"
 }
 
 resource "google_storage_bucket_object" "non_prod_projects_vars" {
