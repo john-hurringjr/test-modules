@@ -61,7 +61,7 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   binding {
     role    = "roles/securitycenter.adminViewer"
     members = [
-      "group:${var.security_admins_group}",
+      "group:${var.security_viewer_group}",
     ]
   }
 
@@ -102,7 +102,7 @@ data "google_iam_policy" "org_node_iam_policy_data" {
 
   binding {
     role    = "roles/iam.securityReviewer"
-    members = ["group:${var.security_admins_group}",
+    members = ["group:${var.security_viewer_group}",
     ]
   }
 
