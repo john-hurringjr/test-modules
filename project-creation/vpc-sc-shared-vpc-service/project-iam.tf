@@ -83,28 +83,29 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-  binding {
-    role = "roles/cloudbuild.builds.editor"
-    members = [
-      "group:${var.project_admin_group_id}",
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/cloudbuild.builds.builder"
-    members = [
-      "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/cloudbuild.serviceAgent"
-    members = [
-      "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
-    ]
-  }
+  #Not current supported by VPC SC
+//  binding {
+//    role = "roles/cloudbuild.builds.editor"
+//    members = [
+//      "group:${var.project_admin_group_id}",
+//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+//    ]
+//  }
+//
+//  binding {
+//    role = "roles/cloudbuild.builds.builder"
+//    members = [
+//      "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com",
+//    ]
+//  }
+//
+//  binding {
+//    role = "roles/cloudbuild.serviceAgent"
+//    members = [
+//      "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
+//    ]
+//  }
 
   binding {
     role = "roles/cloudfunctions.admin"
@@ -367,21 +368,22 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-  binding {
-    role = "roles/run.admin"
-    members = [
-      "group:${var.project_admin_group_id}",
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/run.serviceAgent"
-    members = [
-      "serviceAccount:service-${google_project.project.number}@serverless-robot-prod.iam.gserviceaccount.com",
-    ]
-  }
+  # Not currently supported by VPC SC
+  //  binding {
+//    role = "roles/run.admin"
+//    members = [
+//      "group:${var.project_admin_group_id}",
+//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+//    ]
+//  }
+//
+//  binding {
+//    role = "roles/run.serviceAgent"
+//    members = [
+//      "serviceAccount:service-${google_project.project.number}@serverless-robot-prod.iam.gserviceaccount.com",
+//    ]
+//  }
 
   binding {
     role = "roles/secretmanager.admin"
@@ -409,6 +411,16 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
+
+  binding {
+    role = "roles/ml.admin"
+    members = [
+      "group:${var.project_admin_group_id}",
+      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
 
 }
 

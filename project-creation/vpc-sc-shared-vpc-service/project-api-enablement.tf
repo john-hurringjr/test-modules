@@ -87,12 +87,13 @@ resource "google_project_service" "enable_dataflow_api" {
   disable_on_destroy  = false
 }
 
-resource "google_project_service" "enable_cloudbuild_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "cloudbuild.googleapis.com"
-  disable_on_destroy  = false
-}
+# Not currently supported by VPC SC
+//resource "google_project_service" "enable_cloudbuild_api" {
+//  depends_on          = [google_project.project]
+//  project             = google_project.project.project_id
+//  service             = "cloudbuild.googleapis.com"
+//  disable_on_destroy  = false
+//}
 
 resource "google_project_service" "enable_cloudfunctions_api" {
   depends_on          = [google_project.project]
@@ -101,12 +102,13 @@ resource "google_project_service" "enable_cloudfunctions_api" {
   disable_on_destroy  = false
 }
 
-resource "google_project_service" "enable_cloudrun_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "run.googleapis.com"
-  disable_on_destroy  = false
-}
+# Not currently supported by VPC SC
+//resource "google_project_service" "enable_cloudrun_api" {
+//  depends_on          = [google_project.project]
+//  project             = google_project.project.project_id
+//  service             = "run.googleapis.com"
+//  disable_on_destroy  = false
+//}
 
 resource "google_project_service" "enable_gke_api" {
   depends_on          = [google_project.project, google_project_service.enable_compute_api]
