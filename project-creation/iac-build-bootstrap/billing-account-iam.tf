@@ -21,5 +21,5 @@ resource "google_billing_account_iam_member" "cloud_build_billing_admin" {
   depends_on = [google_project_service.enable_build_api, google_project.project]
   billing_account_id  = var.billing_account_id
   member              = "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-  role                = "roles.billing.admin"
+  role                = "roles/billing.admin"
 }
