@@ -82,7 +82,7 @@ resource "google_organization_policy" "external_ip_restricted" {
 }
 
 resource "google_organization_policy" "disable_vm_ip_forward" {
-  constraint  = "compute.compute.vmCanIpForward"
+  constraint  = "compute.vmCanIpForward"
   org_id      = var.organization_id
 
   list_policy {
