@@ -252,6 +252,6 @@ data "google_iam_policy" "folder_policy_data" {
  *****************************************/
 
 resource "google_folder_iam_policy" "folder_iam" {
-  folder      = "folders/${var.folder_id}"
+  folder      = var.folder_id
   policy_data = data.google_iam_policy.folder_policy_data.policy_data
 }
