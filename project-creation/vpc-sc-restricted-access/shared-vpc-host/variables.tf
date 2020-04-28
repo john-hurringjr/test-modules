@@ -59,32 +59,8 @@ variable "label_restrictions" {
   default     = ""
 }
 
-variable "network_admin_group_id" {
-  description = "Group who will have admin permissions for project except to create/delete firewall rules."
-  type        = string
-  default     = ""
-}
-
-variable "security_admin_group_id" {
-  description = "Group who will have ability to create/delete firewall rules for project. May be same group as network admins."
-  type        = string
-  default     = ""
-}
-
 variable "service_perimeter_name" {
   description = "VPC SC Perimeter project will be added to"
-  type        = "string"
-  default     = ""
-}
-
-variable "nework_user_sa_group" {
-  description = "Group to be used for all SA's that need to be network user on project"
-  type        = "string"
-  default     = ""
-}
-
-variable "network_user_groups" {
-  description = "Groups that need to have network user on project. Will nest groups"
   type        = "string"
   default     = ""
 }

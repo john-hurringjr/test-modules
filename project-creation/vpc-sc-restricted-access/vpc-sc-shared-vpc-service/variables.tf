@@ -82,3 +82,23 @@ variable "service_perimeter_name" {
   type        = "string"
   default     = ""
 }
+
+variable "subnet_region_1" {
+  description = "The region that subnet 1 resides in for host vpc"
+  type        = string
+}
+
+variable "subnet_region_2" {
+  description = "The region that subnet 2 resides in for host vpc"
+  type        = string
+}
+
+variable "subnet_region_1_name" {
+  description = "The name of the subnet in Region 1"
+  type        = string
+}
+
+variable "subnet_region_2_name" {
+  description = "The name of the subnet in Region 2"
+  type        = string
+}
