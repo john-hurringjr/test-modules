@@ -20,5 +20,5 @@
 resource "google_access_context_manager_service_perimeter_resource" "service_perimeter_resource_add" {
   depends_on      = [google_project.project, google_project_service.enable_compute_api, google_compute_shared_vpc_host_project.promote_to_host]
   perimeter_name  = var.service_perimeter_name
-  resource        = google_project.project.number
+  resource        = "projects/${google_project.project.number}"
 }
