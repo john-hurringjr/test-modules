@@ -14,61 +14,22 @@
  */
 
 /******************************************
-  New Default Service Account
- *****************************************/
-
-resource "google_service_account" "new_project_default_service_account" {
-  depends_on  = [google_project.project]
-  project = google_project.project.project_id
-  account_id  = "default"
-}
-
-/******************************************
   Project IAM Bindings
  *****************************************/
 
-resource "google_project_iam_binding" "logging_admin" {
+resource "google_project_iam_binding" "log_viewer" {
   project = google_project.project.project_id
-  role    = "roles/logging.admin"
+  role    = "roles/logging.viewer"
   members = [
-    "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-    "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    "group:${var.network_viewer_group_id}",
   ]
 }
 
-resource "google_project_iam_binding" "network_admin" {
+resource "google_project_iam_binding" "network_viewers" {
   project = google_project.project.project_id
-  role    = "roles/compute.networkAdmin"
+  role    = "roles/compute.networkViewer"
   members = [
-    "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-    "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-  ]
-}
-
-resource "google_project_iam_binding" "compute_security_admin" {
-  project = google_project.project.project_id
-  role    = "roles/compute.securityAdmin"
-  members = [
-    "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-    "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-  ]
-}
-
-resource "google_project_iam_binding" "service_account_user" {
-  project = google_project.project.project_id
-  role    = "roles/iam.serviceAccountUser"
-  members = [
-    "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-    "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-  ]
-}
-
-resource "google_project_iam_binding" "compute_instance_admin" {
-  project = google_project.project.project_id
-  role    = "roles/compute.instanceAdmin.v1"
-  members = [
-    "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-    "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    "group:${var.network_viewer_group_id}",
   ]
 }
 

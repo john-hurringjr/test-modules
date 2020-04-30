@@ -64,3 +64,9 @@ variable "service_perimeter_name" {
   type        = string
   default     = ""
 }
+
+variable "network_viewer_group_id" {
+  description = "Group for network viewers"
+  type        = string
+  default     = ""
+}

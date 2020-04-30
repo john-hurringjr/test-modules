@@ -15,7 +15,6 @@
 
 /******************************************
   New Default Service Account
-  (Will mirror permissions of admin group)
  *****************************************/
 
 resource "google_service_account" "new_project_default_service_account" {
@@ -37,16 +36,21 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/bigquery.admin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
 //  }
 
   binding {
+    role = "roles/viewer"
+    members = [
+      "group:${var.project_viewer_group}",
+    ]
+  }
+
+  binding {
     role = "roles/bigtable.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -56,7 +60,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/binaryauthorization.attestorsAdmin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -65,7 +68,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/binaryauthorization.policyAdmin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -82,7 +84,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/cloudbuild.builds.editor"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -105,7 +106,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/cloudfunctions.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -131,7 +131,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/cloudkms.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -150,7 +149,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/cloudsql.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -160,7 +158,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/cloudtasks.admin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -169,7 +166,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/cloudtrace.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -178,7 +174,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/cloudtranslate.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -197,7 +192,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/compute.instanceAdmin.v1"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -213,7 +207,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/container.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -236,7 +229,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/dataflow.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -252,7 +244,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/dataproc.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -261,7 +252,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/datastore.owner"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -271,7 +261,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/dialogflow.admin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -281,7 +270,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/dlp.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -291,7 +279,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/errorreporting.admin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -300,7 +287,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/gkehub.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -309,7 +295,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/iam.serviceAccountAdmin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -318,7 +303,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/iam.serviceAccountUser"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -328,7 +312,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/iap.admin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -337,7 +320,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/logging.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -346,7 +328,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/monitoring.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -355,7 +336,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/pubsub.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -365,7 +345,6 @@ data "google_iam_policy" "project_iam_policy_data" {
 //  binding {
 //    role = "roles/redis.admin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -375,7 +354,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   //  binding {
 //    role = "roles/run.admin"
 //    members = [
-//      "group:${var.project_admin_group_id}",
 //      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
 //      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
 //    ]
@@ -391,7 +369,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/secretmanager.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -400,7 +377,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/spanner.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -409,7 +385,6 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/storage.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
@@ -418,12 +393,10 @@ data "google_iam_policy" "project_iam_policy_data" {
   binding {
     role = "roles/ml.admin"
     members = [
-      "group:${var.project_admin_group_id}",
       "serviceAccount:${google_service_account.new_project_default_service_account.email}",
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
-
 
 }
 
