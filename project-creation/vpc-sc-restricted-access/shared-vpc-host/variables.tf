@@ -61,6 +61,6 @@ variable "label_restrictions" {
 
 variable "service_perimeter_name" {
   description = "VPC SC Perimeter project will be added to"
-  type        = "string"
+  type        = string
   default     = ""
 }
