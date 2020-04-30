@@ -19,28 +19,28 @@
 
 resource "google_organization_iam_member" "org_admin" {
   depends_on  = [google_project_service.enable_build_api, google_project.project]
-  member      = "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+  member      = "serviceAccount:${google_project.project.number}@gcloudbuild.gserviceaccount.com"
   org_id      = var.org_id
   role        = "roles/resourcemanager.organizationAdmin"
 }
 
 resource "google_organization_iam_member" "access_context_manager_admin" {
   depends_on  = [google_project_service.enable_build_api, google_project.project]
-  member      = "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+  member      = "serviceAccount:${google_project.project.number}@gcloudbuild.gserviceaccount.com"
   org_id      = var.org_id
   role        = "roles/accesscontextmanager.policyAdmin"
 }
 
 resource "google_organization_iam_member" "folder_admin" {
   depends_on  = [google_project_service.enable_build_api, google_project.project]
-  member      = "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+  member      = "serviceAccount:${google_project.project.number}@gcloudbuild.gserviceaccount.com"
   org_id      = var.org_id
   role        = "roles/resourcemanager.folderAdmin"
 }
 
 resource "google_organization_iam_member" "org_policy_admin" {
   depends_on  = [google_project_service.enable_build_api, google_project.project]
-  member      = "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
+  member      = "serviceAccount:${google_project.project.number}@gcloudbuild.gserviceaccount.com"
   org_id      = var.org_id
   role        = "roles/orgpolicy.policyAdmin"
 }
