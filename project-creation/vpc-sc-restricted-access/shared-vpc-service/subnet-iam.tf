@@ -21,7 +21,7 @@
   Subnet 1 Network User IAM Members
  *****************************************/
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_cloudserv" {
-  project     = google_project.project.project_id
+  project     = var.shared_vpc_host_project_id
   region      = var.subnet_1_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
@@ -29,7 +29,7 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_cloudserv" 
 }
 
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_new_default" {
-  project     = google_project.project.project_id
+  project     = var.shared_vpc_host_project_id
   region      = var.subnet_1_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
@@ -40,7 +40,7 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_new_default
   Subnet 2 Network User IAM Members
  *****************************************/
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_cloudserv" {
-  project     = google_project.project.project_id
+  project     = var.shared_vpc_host_project_id
   region      = var.subnet_2_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
@@ -48,7 +48,7 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_cloudserv" 
 }
 
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_new_default" {
-  project     = google_project.project.project_id
+  project     = var.shared_vpc_host_project_id
   region      = var.subnet_2_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
