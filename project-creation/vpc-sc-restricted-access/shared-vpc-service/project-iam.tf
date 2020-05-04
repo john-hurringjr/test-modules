@@ -18,7 +18,7 @@
  *****************************************/
 
 resource "google_service_account" "new_project_default_service_account" {
-  depends_on  = [google_project.project, google_project_service.enable_compute_api]
+  depends_on  = [google_project.project, google_project_service.enable_compute_api, google_project_service.enable_iam_api]
   project     = google_project.project.project_id
   account_id  = "default"
 }
