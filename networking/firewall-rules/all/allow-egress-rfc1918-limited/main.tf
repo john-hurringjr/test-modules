@@ -20,7 +20,7 @@
 resource "google_compute_firewall" "firewall_rule" {
   provider            = google-beta
   project             = var.project_id
-  name                = "${var.network_name}-allow-all-rfc-1918-ingress-limited"
+  name                = "${var.network_name}-allow-all-rfc-1918-egress-limited"
   network             = var.network_self_link
   description         = "Allows egress of SSH, RDP, HTTPS to all rfc1918 ranges."
   direction           = "EGRESS"
