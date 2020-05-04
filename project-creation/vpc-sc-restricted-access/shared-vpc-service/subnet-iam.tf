@@ -21,6 +21,7 @@
   Subnet 1 Network User IAM Members
  *****************************************/
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_cloudserv" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
   project     = var.shared_vpc_host_project_id
   region      = var.subnet_1_region
   role        = "roles/compute.networkUser"
@@ -29,6 +30,7 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_cloudserv" 
 }
 
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_new_default" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
   project     = var.shared_vpc_host_project_id
   region      = var.subnet_1_region
   role        = "roles/compute.networkUser"
@@ -40,6 +42,7 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_new_default
   Subnet 2 Network User IAM Members
  *****************************************/
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_cloudserv" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
   project     = var.shared_vpc_host_project_id
   region      = var.subnet_2_region
   role        = "roles/compute.networkUser"
@@ -48,6 +51,7 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_cloudserv" 
 }
 
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_new_default" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
   project     = var.shared_vpc_host_project_id
   region      = var.subnet_2_region
   role        = "roles/compute.networkUser"

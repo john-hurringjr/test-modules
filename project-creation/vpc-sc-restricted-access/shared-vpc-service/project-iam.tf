@@ -212,12 +212,13 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-  binding {
-    role = "roles/containeranalysis.ServiceAgent"
-    members = [
-      "serviceAccount:service-${google_project.project.number}@container-analysis.iam.gserviceaccount.com",
-    ]
-  }
+  # Which api creates this?
+//  binding {
+//    role = "roles/containeranalysis.ServiceAgent"
+//    members = [
+//      "serviceAccount:service-${google_project.project.number}@container-analysis.iam.gserviceaccount.com",
+//    ]
+//  }
 
   binding {
     role = "roles/container.serviceAgent"
