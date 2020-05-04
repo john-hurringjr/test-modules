@@ -79,26 +79,26 @@ variable "shared_vpc_host_project_id" {
 
 variable "service_perimeter_name" {
   description = "VPC SC Perimeter project will be added to"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
-variable "subnet_region_1" {
+variable "subnet_1_region" {
   description = "The region that subnet 1 resides in for host vpc"
   type        = string
 }
 
-variable "subnet_region_2" {
+variable "subnet_2_region" {
   description = "The region that subnet 2 resides in for host vpc"
   type        = string
 }
 
-variable "subnet_region_1_name" {
-  description = "The name of the subnet in Region 1"
+variable "subnet_1_name" {
+  description = "The name of subnet 1"
   type        = string
 }
 
-variable "subnet_region_2_name" {
-  description = "The name of the subnet in Region 2"
+variable "subnet_2_name" {
+  description = "The name of subnet 2"
   type        = string
 }

@@ -22,18 +22,18 @@
  *****************************************/
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_cloudserv" {
   project     = google_project.project.project_id
-  region      = var.subnet_region_1
+  region      = var.subnet_1_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
-  subnetwork  = var.subnet_region_1_name
+  subnetwork  = var.subnet_1_name
 }
 
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_new_default" {
   project     = google_project.project.project_id
-  region      = var.subnet_region_1
+  region      = var.subnet_1_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
-  subnetwork  = var.subnet_region_1_name
+  subnetwork  = var.subnet_1_name
 }
 
 /******************************************
@@ -41,16 +41,16 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_1_new_default
  *****************************************/
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_cloudserv" {
   project     = google_project.project.project_id
-  region      = var.subnet_region_2
+  region      = var.subnet_2_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
-  subnetwork  = var.subnet_region_2_name
+  subnetwork  = var.subnet_2_name
 }
 
 resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_new_default" {
   project     = google_project.project.project_id
-  region      = var.subnet_region_2
+  region      = var.subnet_2_region
   role        = "roles/compute.networkUser"
   member      = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
-  subnetwork  = var.subnet_region_2_name
+  subnetwork  = var.subnet_2_name
 }
