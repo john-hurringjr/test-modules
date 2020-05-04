@@ -131,10 +131,3 @@ resource "google_project_service" "enable_oslogin_api" {
   service             = "oslogin.googleapis.com"
   disable_on_destroy  = false
 }
-
-resource "google_project_service" "enable_iam_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "iam.googleapis.com"
-  disable_on_destroy  = false
-}
