@@ -50,6 +50,13 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  binding {
+    role    = "roles/accesscontextmanager.policyReader"
+    members = [
+      "group:${var.security_viewer_group}",
+    ]
+  }
+
   #typically wouldn't be used/required, but my ID is not from this org...
   binding {
     role    = "roles/compute.osLoginExternalUser"
