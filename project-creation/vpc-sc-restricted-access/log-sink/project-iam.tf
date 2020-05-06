@@ -14,16 +14,6 @@
  */
 
 /******************************************
-  New Default Service Account
- *****************************************/
-
-resource "google_service_account" "new_project_default_service_account" {
-  depends_on  = [google_project.project,]
-  project     = google_project.project.project_id
-  account_id  = "default"
-}
-
-/******************************************
   IAM Policy Data
  *****************************************/
 
@@ -37,71 +27,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "group:${var.project_viewer_group}",
     ]
   }
-
-
-  binding {
-    role = "roles/cloudfunctions.admin"
-    members = [
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/cloudfunctions.serviceAgent"
-    members = [
-      "serviceAccount:service-${google_project.project.number}@gcf-admin-robot.iam.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/iam.serviceAccountAdmin"
-    members = [
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/iam.serviceAccountUser"
-    members = [
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/logging.admin"
-    members = [
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/monitoring.admin"
-    members = [
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/pubsub.admin"
-    members = [
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
-  binding {
-    role = "roles/storage.admin"
-    members = [
-      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-    ]
-  }
-
 }
 
 /******************************************
@@ -109,7 +34,7 @@ data "google_iam_policy" "project_iam_policy_data" {
  *****************************************/
 
 resource "google_project_iam_policy" "project_iam_policy" {
-  depends_on  = [google_project.project, google_service_account.new_project_default_service_account]
+  depends_on  = [google_project.project,]
   policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
   project     = google_project.project.project_id
 }

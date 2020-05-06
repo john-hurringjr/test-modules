@@ -58,10 +58,3 @@ resource "google_project_service" "enable_storage_transfer_api" {
   service             = "storagetransfer.googleapis.com"
   disable_on_destroy  = false
 }
-
-resource "google_project_service" "enable_cloudfunctions_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "cloudfunctions.googleapis.com"
-  disable_on_destroy  = false
-}
