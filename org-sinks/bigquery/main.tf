@@ -42,6 +42,7 @@ resource "google_logging_organization_sink" "org_log_sink" {
  *****************************************/
 
 resource "google_bigquery_dataset_access" "dataset_access" {
+  project       = var.project_id
   dataset_id    = google_bigquery_dataset.sink_dataset.dataset_id
   role          = "roles/bigquery.dataEditor"
   iam_member    = "serviceAccount:${google_logging_organization_sink.org_log_sink.writer_identity}"
