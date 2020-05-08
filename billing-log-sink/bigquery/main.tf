@@ -26,26 +26,19 @@ resource "google_bigquery_dataset" "sink_dataset" {
 }
 
 /******************************************
-  Org Log Sink
+  Billing Log Sink
  *****************************************/
 
-resource "google_logging_organization_sink" "org_log_sink" {
-  destination       = "bigquery.googleapis.com/projects/${var.project_id}/datasets/${google_bigquery_dataset.sink_dataset.dataset_id}"
-  name              = var.sink_name
-  org_id            = var.organization_id
-  include_children  = true
-  filter            = var.sink_filter
+resource "google_logging_billing_account_sink" "billing_log_sink" {
+  billing_account = var.billing_account
+  destination     = "bigquery.googleapis.com/projects/${var.project_id}/datasets/${google_bigquery_dataset.sink_dataset.dataset_id}"
+  name            = var.sink_name
+  filter          = var.sink_filter
 }
 
 /******************************************
   BigQuery IAM
  *****************************************/
-
-resource "google_bigquery_dataset_access" "dataset_access" {
-  dataset_id    = google_bigquery_dataset.sink_dataset.dataset_id
-  role          = "roles/bigquery.dataEditor"
-  iam_member    = "serviceAccount:${google_logging_organization_sink.org_log_sink.writer_identity}"
-}
 
 /*
   IAM set inside bq resource block
