@@ -12,30 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/******************************************
-  IAM Policy Data
- *****************************************/
-
-data "google_iam_policy" "project_iam_policy_data" {
-
-  # Project Admins & Appropriate Service Accounts
-
-  binding {
-    role = "roles/viewer"
-    members = [
-      "group:${var.project_viewer_group}",
-    ]
-  }
-
-}
-
-/******************************************
-  IAM Policy Applied to Project
- *****************************************/
-
-resource "google_project_iam_policy" "project_iam_policy" {
-  depends_on  = [google_project.project,]
-  policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
-  project     = google_project.project.project_id
-}
+//
+///******************************************
+//  IAM Policy Data
+// *****************************************/
+//
+//data "google_iam_policy" "project_iam_policy_data" {
+//
+//  # Project Admins & Appropriate Service Accounts
+//
+//  binding {
+//    role = "roles/viewer"
+//    members = [
+//      "group:${var.project_viewer_group}",
+//    ]
+//  }
+//
+//}
+//
+///******************************************
+//  IAM Policy Applied to Project
+// *****************************************/
+//
+//resource "google_project_iam_policy" "project_iam_policy" {
+//  depends_on  = [google_project.project,]
+//  policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
+//  project     = google_project.project.project_id
+//}
