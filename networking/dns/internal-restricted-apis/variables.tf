@@ -28,3 +28,9 @@ variable "network_self_link" {
   type        = string
   default     = ""
 }
+
+variable "unique_zone_name_addition" {
+  description = "If a unique name is needed, can append to end of zone name"
+  type        = string
+  default     = ""
+}
