@@ -17,7 +17,7 @@
   Cloud DNS - Internal
  *****************************************/
 
-resource "google_dns_managed_zone" "private_zone" {
+resource "google_dns_managed_zone" "restricted_api_zone" {
   project     = var.project_id
   name        = "restricted-api-zone"
   dns_name    = "googleapis.com."
@@ -31,19 +31,19 @@ resource "google_dns_managed_zone" "private_zone" {
   }
 }
 
-resource "google_dns_record_set" "private_api_access_a_record" {
+resource "google_dns_record_set" "restricted_api_access_a_record" {
   project       = var.project_id
-  managed_zone  = google_dns_managed_zone.private_zone.name
+  managed_zone  = google_dns_managed_zone.restricted_api_zone.name
   name          = "restricted.googleapis.com."
   rrdatas       = ["199.36.153.4", "199.36.153.5", "199.36.153.6", "199.36.153.7"]
   ttl           = 300
   type          = "A"
 }
 
-resource "google_dns_record_set" "private_api_access_cname_record" {
+resource "google_dns_record_set" "restricted_api_access_cname_record" {
   project       = var.project_id
   name          = "*.googleapis.com."
-  managed_zone  = google_dns_managed_zone.private_zone.name
+  managed_zone  = google_dns_managed_zone.restricted_api_zone.name
   type          = "CNAME"
   ttl           = 300
   rrdatas       = ["restricted.googleapis.com."]
