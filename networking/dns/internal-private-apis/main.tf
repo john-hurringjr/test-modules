@@ -19,7 +19,7 @@
 
 resource "google_dns_managed_zone" "private_zone" {
   project     = var.project_id
-  name        = "private-api-zone"
+  name        = "private-api-zone${var.unique_zone_name_addition}"
   dns_name    = "googleapis.com."
   description = "Google Private API Access"
   visibility  = "private"
