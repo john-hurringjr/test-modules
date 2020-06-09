@@ -93,6 +93,16 @@ variable "subnet_2_region" {
   type        = string
 }
 
+variable "subnet_3_region" {
+  description = "The region that subnet 3 resides in for host vpc"
+  type        = string
+}
+
+variable "subnet_4_region" {
+  description = "The region that subnet 4 resides in for host vpc"
+  type        = string
+}
+
 variable "subnet_1_name" {
   description = "The name of subnet 1"
   type        = string
@@ -100,5 +110,15 @@ variable "subnet_1_name" {
 
 variable "subnet_2_name" {
   description = "The name of subnet 2"
+  type        = string
+}
+
+variable "subnet_3_name" {
+  description = "The name of subnet 3"
+  type        = string
+}
+
+variable "subnet_4_name" {
+  description = "The name of subnet 4"
   type        = string
 }

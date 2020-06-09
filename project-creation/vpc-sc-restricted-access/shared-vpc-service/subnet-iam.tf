@@ -58,3 +58,45 @@ resource "google_compute_subnetwork_iam_member" "iam_member_subnet_2_new_default
   member      = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
   subnetwork  = var.subnet_2_name
 }
+
+/******************************************
+  Subnet 3 Network User IAM Members
+ *****************************************/
+resource "google_compute_subnetwork_iam_member" "iam_member_subnet_3_cloudserv" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
+  project     = var.shared_vpc_host_project_id
+  region      = var.subnet_3_region
+  role        = "roles/compute.networkUser"
+  member      = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
+  subnetwork  = var.subnet_3_name
+}
+
+resource "google_compute_subnetwork_iam_member" "iam_member_subnet_3_new_default" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
+  project     = var.shared_vpc_host_project_id
+  region      = var.subnet_3_region
+  role        = "roles/compute.networkUser"
+  member      = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
+  subnetwork  = var.subnet_3_name
+}
+
+/******************************************
+  Subnet 4 Network User IAM Members
+ *****************************************/
+resource "google_compute_subnetwork_iam_member" "iam_member_subnet_4_cloudserv" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
+  project     = var.shared_vpc_host_project_id
+  region      = var.subnet_4_region
+  role        = "roles/compute.networkUser"
+  member      = "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com"
+  subnetwork  = var.subnet_4_name
+}
+
+resource "google_compute_subnetwork_iam_member" "iam_member_subnet_4_new_default" {
+  depends_on  = [google_project_service.enable_compute_api, google_project_service.enable_gke_api, google_project_service.enable_oslogin_api, google_project_service.enable_dataflow_api]
+  project     = var.shared_vpc_host_project_id
+  region      = var.subnet_4_region
+  role        = "roles/compute.networkUser"
+  member      = "serviceAccount:${google_service_account.new_project_default_service_account.email}"
+  subnetwork  = var.subnet_4_name
+}
