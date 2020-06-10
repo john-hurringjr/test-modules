@@ -94,3 +94,9 @@ resource "google_project_service" "enable_build_api" {
   disable_on_destroy  = false
 }
 
+resource "google_project_service" "enable_gke_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "container.googleapis.com"
+  disable_on_destroy  = false
+}
