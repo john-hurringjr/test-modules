@@ -44,3 +44,10 @@ resource "google_project_service" "enable_dns_api" {
   service             = "dns.googleapis.com"
   disable_on_destroy  = false
 }
+
+resource "google_project_service" "enable_service_networking_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "servicenetworking.googleapis.com"
+  disable_on_destroy  = false
+}
