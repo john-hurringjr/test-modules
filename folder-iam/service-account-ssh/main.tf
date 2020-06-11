@@ -19,12 +19,12 @@
 
 resource "google_folder_iam_member" "folder_iam_os_login" {
   folder = var.folder_id
-  member = var.service_account
+  member = "serviceAccount:${var.service_account}"
   role   = "roles/compute.osAdminLogin"
 }
 
 resource "google_folder_iam_member" "folder_iam_service_account_user" {
   folder = var.folder_id
-  member = var.service_account
+  member = "serviceAccount:${var.service_account}"
   role   = "roles/iam.serviceAccountUser"
 }
