@@ -14,20 +14,5 @@
  */
 
 /******************************************
-  Variables
+  Outputs
  *****************************************/
-
-variable "terraform_project_creator_service_account" {
-  type        = string
-  description = "Service Account identity (email) that will be used to deploy and manage projects"
-}
-
-variable "terraform_resource_creator_service_account" {
-  type        = string
-  description = "Service Account identity (email) that will be used to deploy resources"
-}
-
-variable "folder_id" {
-  type        = string
-  description = "Folder ID to apply IAM policy"
-}

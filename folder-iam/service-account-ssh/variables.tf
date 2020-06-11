@@ -17,14 +17,9 @@
   Variables
  *****************************************/
 
-variable "terraform_project_creator_service_account" {
+variable "service_account" {
   type        = string
-  description = "Service Account identity (email) that will be used to deploy and manage projects"
-}
-
-variable "terraform_resource_creator_service_account" {
-  type        = string
-  description = "Service Account identity (email) that will be used to deploy resources"
+  description = "Service Account identity (email) that will be used to ssh to VMs"
 }
 
 variable "folder_id" {

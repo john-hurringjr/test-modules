@@ -14,20 +14,17 @@
  */
 
 /******************************************
-  Variables
+  Apply Shared Services IAM Policy
  *****************************************/
 
-variable "terraform_project_creator_service_account" {
-  type        = string
-  description = "Service Account identity (email) that will be used to deploy and manage projects"
+resource "google_folder_iam_member" "folder_iam_os_login" {
+  folder = var.folder_id
+  member = var.service_account
+  role   = "roles/compute.osAdminLogin"
 }
 
-variable "terraform_resource_creator_service_account" {
-  type        = string
-  description = "Service Account identity (email) that will be used to deploy resources"
-}
-
-variable "folder_id" {
-  type        = string
-  description = "Folder ID to apply IAM policy"
+resource "google_folder_iam_member" "folder_iam_service_account_user" {
+  folder = var.folder_id
+  member = var.service_account
+  role   = "roles/iam.serviceAccountUser"
 }
