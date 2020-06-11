@@ -25,7 +25,7 @@ resource "google_compute_firewall" "firewall_rule" {
   direction       = "INGRESS"
   enable_logging  = var.enable_logging
   priority        = var.priority
-  source_ranges = ["10.0.0.0/8", "192.168.0.0/24", "172.16.0.0/16"]
+  source_ranges = ["10.0.0.0/8", "192.168.0.0/24", "172.16.0.0/12"]
 
   allow {
     protocol = "icmp"
