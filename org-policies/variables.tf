@@ -17,14 +17,9 @@
   Varables
  *****************************************/
 
-variable "domain_identity_primary" {
-  type        = string
-  description = "Root domain identity. Allows all users with identity in domain to see org node. Helps users know they are working within appropriate space"
-}
-
-variable "domain_identity_secondary" {
-  type        = string
-  description = "Secondary domain identity. Allows all users with identity in domain to see org node. Helps users know they are working within appropriate space"
+variable "domain_identities" {
+  type        = list(string)
+  description = "Root domain identities. Allows all users with identity in domain to see org node. Helps users know they are working within appropriate space"
 }
 
 variable "organization_id" {
