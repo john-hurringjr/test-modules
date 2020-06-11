@@ -27,7 +27,7 @@ resource "google_organization_policy" "domain_restricted_sharing" {
 
   list_policy {
     allow {
-      values = [var.domain_identities]
+      values = var.domain_identities
     }
   }
 
