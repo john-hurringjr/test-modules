@@ -100,3 +100,10 @@ resource "google_project_service" "enable_gke_api" {
   service             = "container.googleapis.com"
   disable_on_destroy  = false
 }
+
+resource "google_project_service" "enable_secret_manager_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "secretmanager.googleapis.com"
+  disable_on_destroy  = false
+}
