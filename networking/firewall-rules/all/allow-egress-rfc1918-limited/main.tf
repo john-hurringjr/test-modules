@@ -26,7 +26,7 @@ resource "google_compute_firewall" "firewall_rule" {
   direction           = "EGRESS"
   enable_logging      = var.enable_logging
   priority            = var.priority
-  destination_ranges  = ["10.0.0.0/8", "192.168.0.0/24", "172.16.0.0/12"]
+  destination_ranges  = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
 
   allow {
     protocol = "tcp"
