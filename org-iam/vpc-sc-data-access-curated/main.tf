@@ -19,6 +19,7 @@
 
 data "google_iam_policy" "org_node_iam_policy_data" {
 
+  # Logging enablement for Data Access (Targeting only specific services)
   audit_config {
     service = "accesscontextmanager.googleapis.com"
 
@@ -53,6 +54,91 @@ data "google_iam_policy" "org_node_iam_policy_data" {
 
   }
 
+  audit_config {
+    service = "cloudkms.googleapis.com"
+
+    audit_log_configs {
+      log_type = "DATA_WRITE"
+    }
+
+    audit_log_configs {
+      log_type = "ADMIN_READ"
+    }
+
+    audit_log_configs {
+      log_type = "DATA_READ"
+    }
+
+  }
+
+  audit_config {
+    service = "secretmanager.googleapis.com"
+
+    audit_log_configs {
+      log_type = "DATA_WRITE"
+    }
+
+    audit_log_configs {
+      log_type = "ADMIN_READ"
+    }
+
+    audit_log_configs {
+      log_type = "DATA_READ"
+    }
+
+  }
+
+  audit_config {
+    service = "cloudresourcemanager.googleapis.com"
+
+    audit_log_configs {
+      log_type = "DATA_WRITE"
+    }
+
+    audit_log_configs {
+      log_type = "ADMIN_READ"
+    }
+
+    audit_log_configs {
+      log_type = "DATA_READ"
+    }
+  }
+
+  audit_config {
+    service = "dlp.googleapis.com"
+
+    audit_log_configs {
+      log_type = "DATA_WRITE"
+    }
+
+    audit_log_configs {
+      log_type = "ADMIN_READ"
+    }
+
+    audit_log_configs {
+      log_type = "DATA_READ"
+    }
+
+  }
+
+  audit_config {
+    service = "iap.googleapis.com"
+
+    audit_log_configs {
+      log_type = "DATA_WRITE"
+    }
+
+    audit_log_configs {
+      log_type = "ADMIN_READ"
+    }
+
+    audit_log_configs {
+      log_type = "DATA_READ"
+    }
+
+  }
+
+  # IAM Permissions
   binding {
     role    = "roles/resourcemanager.organizationAdmin"
     members = [
