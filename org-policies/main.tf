@@ -179,7 +179,7 @@ resource "google_organization_policy" "restrict_load_balancer_creation" {
 
   list_policy {
     allow {
-      values = "in:INTERNAL"
+      values = ["INTERNAL_TCP_UDP", "INTERNAL_HTTP_HTTPS"]
     }
   }
 
