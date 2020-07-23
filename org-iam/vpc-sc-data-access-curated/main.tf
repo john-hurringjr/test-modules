@@ -20,10 +20,24 @@
 data "google_iam_policy" "org_node_iam_policy_data" {
 
   audit_config {
-    service = [
-      "accesscontextmanager.googleapis.com",
-      "iam.googleapis.com"
-    ]
+    service = "accesscontextmanager.googleapis.com"
+
+    audit_log_configs {
+      log_type = "DATA_WRITE"
+    }
+
+    audit_log_configs {
+      log_type = "ADMIN_READ"
+    }
+
+    audit_log_configs {
+      log_type = "DATA_READ"
+    }
+
+  }
+
+  audit_config {
+    service = "iam.googleapis.com"
 
     audit_log_configs {
       log_type = "DATA_WRITE"
