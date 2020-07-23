@@ -179,7 +179,7 @@ resource "google_organization_policy" "restrict_load_balancer_creation" {
 
   list_policy {
     allow {
-      values = "INTERNAL"
+      values = "in:INTERNAL"
     }
   }
 
