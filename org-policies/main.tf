@@ -139,7 +139,7 @@ resource "google_organization_policy" "skip_default_network_creation" {
 }
 
 # Forces Bucket IAM only
-# While it takes away granularity of individual object permissions it also takes away ability to make object public
+# While it takes away granularity of individual object permissions it also takes away ability to make object public (when used with domain restricted sharing)
 resource "google_organization_policy" "force_gcs_bucket_iam_only" {
   constraint  = "constraints/storage.uniformBucketLevelAccess"
   org_id      = var.organization_id
@@ -161,3 +161,26 @@ resource "google_organization_policy" "app_engine_disable_source_code_download" 
 
 }
 
+# Disable Internet Network Endpoit Groups
+resource "google_organization_policy" "disable_neg_groups" {
+  constraint = "constraints/compute.disableInternetNetworkEndpointGroup"
+  org_id = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+# Limit Load Balancers Available for use (May grant exceptions where needed)
+resource "google_organization_policy" "restrict_load_balancer_creation" {
+  constraint  = "constraints/compute.restrictLoadBalancerCreationForTypes"
+  org_id      = var.organization_id
+
+  list_policy {
+    allow {
+      values = "INTERNAL"
+    }
+  }
+
+}
