@@ -201,15 +201,6 @@ data "google_iam_policy" "org_node_iam_policy_data" {
       "serviceAccount:service-org-${var.organization_id}@security-center-api.iam.gserviceaccount.com", ]
   }
 
-
-//  binding {
-//    role = "roles/organizationViewer"
-//    members = [
-//      "domain:${var.domain_identity_primary}",
-//    ]
-//  }
-
-
 }
 
 /******************************************
