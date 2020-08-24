@@ -22,11 +22,6 @@ variable "domain_identities" {
   description = "Root domain identities. Allows all users with identity in domain to see org node. Helps users know they are working within appropriate space"
 }
 
-variable "organization_id" {
-  type        = string
-  description = "Root domain identity. Allows all users with identity in domain to see org node. Helps users know they are working within appropriate space"
-}
-
 variable "inherit_from_parent" {
   type = bool
   description = "TRUE or FALSE, to inherit settings from parent."
