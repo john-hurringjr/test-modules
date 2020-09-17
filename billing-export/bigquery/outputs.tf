@@ -12,11 +12,3 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/******************************************
-  Varables
- *****************************************/
-
-output "sink_writer_identity" {
-  value = google_logging_billing_account_sink.billing_sink.writer_identity
-}
