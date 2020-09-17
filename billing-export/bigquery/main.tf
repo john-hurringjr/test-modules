@@ -23,13 +23,3 @@ resource "google_bigquery_dataset" "sink_dataset" {
   location      = var.bigquery_dataset_location
   dataset_id    = var.bigquery_dataset_id
 }
-
-/******************************************
-  Billing Log Sink
- *****************************************/
-
-resource "google_logging_billing_account_sink" "billing_sink" {
-  billing_account = var.billing_account_id
-  destination     = "bigquery.googleapis.com/projects/${var.project_id}/datasets/${google_bigquery_dataset.sink_dataset.dataset_id}"
-  name            = var.sink_name
-}
