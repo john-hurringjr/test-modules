@@ -138,7 +138,7 @@ data "google_iam_policy" "org_node_iam_policy_data" {
 
   }
 
-  # IAM Permissions
+  # IAM Permissions for Service Account:
   binding {
     role    = "roles/resourcemanager.organizationAdmin"
     members = [
@@ -150,28 +150,6 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     role    = "roles/accesscontextmanager.policyAdmin"
     members = [
       "serviceAccount:${var.terraform_org_service_account}",
-    ]
-  }
-
-  binding {
-    role    = "roles/accesscontextmanager.policyReader"
-    members = [
-      "group:${var.security_viewer_group}",
-    ]
-  }
-
-  #typically wouldn't be used/required, but my ID is not from this org...
-  binding {
-    role    = "roles/compute.osLoginExternalUser"
-    members = [
-      "group:${var.external_user_os_login_group}",
-    ]
-  }
-
-  binding {
-    role    = "roles/securitycenter.adminViewer"
-    members = [
-      "group:${var.security_viewer_group}",
     ]
   }
 
@@ -211,12 +189,6 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   }
 
   binding {
-    role    = "roles/iam.securityReviewer"
-    members = ["group:${var.security_viewer_group}",
-    ]
-  }
-
-  binding {
     role = "roles/resourcemanager.folderAdmin"
     members = [
       "serviceAccount:${var.terraform_org_service_account}",
@@ -224,16 +196,68 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   }
 
   binding {
-    role = "roles/billing.creator"
+    role = "roles/threatdetection.editor"
     members = [
-      "group:${var.billing_admins_group}",
+      "serviceAccount:${var.terraform_org_service_account}",
+    ]
+  }
+
+
+  #typically wouldn't be used/required, but my ID is not from this org...
+  binding {
+    role    = "roles/compute.osLoginExternalUser"
+    members = [
+      "group:${var.external_user_os_login_group}",
+    ]
+  }
+
+  # For security team:
+  binding {
+    role    = "roles/securitycenter.adminViewer"
+    members = [
+      "group:${var.security_viewer_group}",
     ]
   }
 
   binding {
-    role = "roles/threatdetection.editor"
+    role    = "roles/iam.securityReviewer"
+    members = ["group:${var.security_viewer_group}",
+    ]
+  }
+
+  binding {
+    role    = "roles/accesscontextmanager.policyReader"
     members = [
-      "serviceAccount:${var.terraform_org_service_account}",
+      "group:${var.security_viewer_group}",
+    ]
+  }
+
+  binding {
+    role    = "roles/cloudasset.assets.analyzeIamPolicy"
+    members = [
+      "group:${var.security_viewer_group}",
+    ]
+  }
+
+  binding {
+    role    = "roles/cloudasset.assets.searchAllIamPolicies"
+    members = [
+      "group:${var.security_viewer_group}",
+    ]
+  }
+
+  binding {
+    role    = "roles/cloudasset.assets.searchAllResources"
+    members = [
+      "group:${var.security_viewer_group}",
+    ]
+  }
+
+  #For Billing Admins
+  binding {
+    role = "roles/billing.creator"
+    members = [
+      "group:${var.billing_admins_group}",
     ]
   }
 
