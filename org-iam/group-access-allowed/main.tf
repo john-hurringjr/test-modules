@@ -195,8 +195,19 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  #Below three permissions are required for Security Command Center to function properly (e.g. enable SHA)
   binding {
     role = "roles/securitycenter.serviceAgent"
+    members = [
+      "serviceAccount:service-org-${var.organization_id}@security-center-api.iam.gserviceaccount.com", ]
+  }
+  binding {
+    role = "roles/serviceusage.serviceUsageAdmin"
+    members = [
+      "serviceAccount:service-org-${var.organization_id}@security-center-api.iam.gserviceaccount.com", ]
+  }
+  binding {
+    role = "roles/cloudfunctions.serviceAgent"
     members = [
       "serviceAccount:service-org-${var.organization_id}@security-center-api.iam.gserviceaccount.com", ]
   }
