@@ -232,22 +232,8 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
-//  binding {
-//    role    = "roles/cloudasset.assets.analyzeIamPolicy"
-//    members = [
-//      "group:${var.security_viewer_group}",
-//    ]
-//  }
-
   binding {
-    role    = "roles/cloudasset.assets.searchAllIamPolicies"
-    members = [
-      "group:${var.security_viewer_group}",
-    ]
-  }
-
-  binding {
-    role    = "roles/cloudasset.assets.searchAllResources"
+    role    = "roles/cloudasset.viewer"
     members = [
       "group:${var.security_viewer_group}",
     ]

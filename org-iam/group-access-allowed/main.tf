@@ -194,26 +194,14 @@ data "google_iam_policy" "org_node_iam_policy_data" {
       "serviceAccount:${var.terraform_service_account}", "group:${var.security_admins_group}"
     ]
   }
-//  binding {
-//    role    = "roles/cloudasset.assets.analyzeIamPolicy"
-//    members = [
-//      "group:${var.security_admins_group}",
-//    ]
-//  }
 
   binding {
-    role    = "roles/cloudasset.assets.searchAllIamPolicies"
+    role    = "roles/cloudasset.viewer"
     members = [
       "group:${var.security_admins_group}",
     ]
   }
 
-  binding {
-    role    = "roles/cloudasset.assets.searchAllResources"
-    members = [
-      "group:${var.security_admins_group}",
-    ]
-  }
   #Below three permissions are required for Security Command Center to function properly (e.g. enable SHA)
   binding {
     role = "roles/securitycenter.serviceAgent"
