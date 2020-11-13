@@ -20,20 +20,85 @@
   https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints
  *****************************************/
 
-# May only add users to IAM from approved domains
-resource "google_organization_policy" "domain_restricted_sharing" {
-  constraint  = "iam.allowedPolicyMemberDomains"
-  org_id      = var.organization_id
+/******************************************
+  App Engine
+ *****************************************/
 
-  list_policy {
-    allow {
-      values = var.domain_identities
-    }
+# Disable Source Code Download
+resource "google_organization_policy" "app_engine_disable_source_code_download" {
+  constraint = "constraints/appengine.disableCodeDownload"
+  org_id = var.organization_id
+
+  boolean_policy {
+    enforced = true
   }
 
 }
 
-# Disables serial port access to VMs
+/******************************************
+  Cloud Functions
+ *****************************************/
+
+# Allowed ingress settings (Cloud Functions)
+
+
+
+
+# Allowed VPC Connector egress settings (Cloud Functions)
+
+
+
+# Require VPC Connector (Cloud Functions)
+
+
+
+/******************************************
+  Cloud SQL
+ *****************************************/
+
+
+# Restrict default Google-managed encryption on Cloud SQL instances
+
+
+
+
+# Restrict Authorized Networks on Cloud SQL instances
+
+
+
+# Restrict Public IP access on Cloud SQL instances
+resource "google_organization_policy" "cloud_sql_restrict_public_ip" {
+  constraint  = "constraints/sql.restrictPublicIp"
+  org_id      = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+/******************************************
+  Compute Engine
+ *****************************************/
+
+# Disable Guest Attributes of Compute Engine metadata
+
+
+# Disable Internet Network Endpoint Groups
+resource "google_organization_policy" "disable_neg_groups" {
+  constraint = "constraints/compute.disableInternetNetworkEndpointGroup"
+  org_id = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+# Disable VM nested virtualization
+
+
+# Disable VM serial port access
 resource "google_organization_policy" "disable_serial_port" {
   constraint  = "compute.disableSerialPortAccess"
   org_id      = var.organization_id
@@ -44,8 +109,7 @@ resource "google_organization_policy" "disable_serial_port" {
 
 }
 
-
-# Disable Serial Port Logging for VMs
+# Disable VM serial port logging to Stackdriver	(Cloud Operations)
 resource "google_organization_policy" "disable_serial_port_logs" {
   constraint  = "compute.disableSerialPortLogging"
   org_id      = var.organization_id
@@ -56,10 +120,9 @@ resource "google_organization_policy" "disable_serial_port_logs" {
 
 }
 
-# Disable Service Account Key Creation (Force use of Application Default Credential method)
-# You may still grant exceptions where necessary
-resource "google_organization_policy" "disable_sa_keys" {
-  constraint  = "iam.disableServiceAccountKeyCreation"
+# Require OS Login
+resource "google_organization_policy" "require_os_login" {
+  constraint  = "constraints/compute.requireOsLogin"
   org_id      = var.organization_id
 
   boolean_policy {
@@ -68,19 +131,67 @@ resource "google_organization_policy" "disable_sa_keys" {
 
 }
 
-# Disable ability to create GCE VM with external IP address
-resource "google_organization_policy" "external_ip_restricted" {
-  constraint  = "compute.vmExternalIpAccess"
+# Shielded VMs
+
+
+# Restrict Authenticated Google Connection
+
+
+# Restrict Cloud NAT usage
+
+
+# Restrict Dedicated Interconnect usage
+
+
+# Restrict Direct Google Access
+
+
+# Restrict Load Balancer Creation Based on Load Balancer Types
+resource "google_organization_policy" "restrict_load_balancer_creation" {
+  constraint  = "constraints/compute.restrictLoadBalancerCreationForTypes"
   org_id      = var.organization_id
 
   list_policy {
-    deny {
-      all = true
+    allow {
+      values = ["INTERNAL_TCP_UDP", "INTERNAL_HTTP_HTTPS"]
     }
   }
 
 }
 
+# Restrict Non-Confidential Computing
+
+
+# Restrict Partner Interconnect usage
+
+
+# Restrict Shared VPC Host Projects
+
+
+# Restrict Shared VPC Subnetworks
+
+
+# Restrict VPC peering usage
+
+
+# Restrict VPN Peer IPs
+
+
+# Skip default network creation
+resource "google_organization_policy" "skip_default_network_creation" {
+  constraint  = "constraints/compute.skipDefaultNetworkCreation"
+  org_id      = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+# Compute Storage resource use restrictions (Compute Engine disks, images, and snapshots)
+
+
+# Restrict VM IP Forwarding
 resource "google_organization_policy" "disable_vm_ip_forward" {
   constraint  = "compute.vmCanIpForward"
   org_id      = var.organization_id
@@ -93,6 +204,80 @@ resource "google_organization_policy" "disable_vm_ip_forward" {
 
 }
 
+# Define allowed external IPs for VM instances
+resource "google_organization_policy" "external_ip_restricted" {
+  constraint  = "compute.vmExternalIpAccess"
+  org_id      = var.organization_id
+
+  list_policy {
+    deny {
+      all = true
+    }
+  }
+
+}
+
+/******************************************
+  Cloud Healthcare
+ *****************************************/
+
+# Disable Cloud Logging
+
+
+
+/******************************************
+  Identity and Access Management
+ *****************************************/
+
+# Allow extending lifetime of OAuth 2.0 access tokens to up to 12 hours
+
+
+# Domain restricted sharing
+resource "google_organization_policy" "domain_restricted_sharing" {
+  constraint  = "iam.allowedPolicyMemberDomains"
+  org_id      = var.organization_id
+
+  list_policy {
+    allow {
+      values = var.domain_identities
+    }
+  }
+
+}
+
+# Disable service account creation
+
+
+# Disable service account key creation
+resource "google_organization_policy" "disable_sa_keys" {
+  constraint  = "iam.disableServiceAccountKeyCreation"
+  org_id      = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+# Disable Service Account Key Upload
+
+
+# Disable Workload Identity Cluster Creation
+
+
+/******************************************
+  Resource Manager
+ *****************************************/
+
+# Restrict shared VPC project lien removal
+
+
+
+/******************************************
+  Service Customer Management
+ *****************************************/
+
+# Disable Automatic IAM Grants for Default Service Accounts
 resource "google_organization_policy" "disable_auto_iam_default_sa" {
   constraint  = "iam.automaticIamGrantsForDefaultServiceAccounts"
   org_id      = var.organization_id
@@ -103,84 +288,24 @@ resource "google_organization_policy" "disable_auto_iam_default_sa" {
 
 }
 
+/******************************************
+  Cloud Storage
+ *****************************************/
 
-# Disable ability to create Cloud SQL with public IP
-resource "google_organization_policy" "cloud_sql_restrict_public_ip" {
-  constraint  = "constraints/sql.restrictPublicIp"
-  org_id      = var.organization_id
+# Google Cloud Platform - Detailed Audit Logging Mode
 
-  boolean_policy {
-    enforced = true
-  }
 
-}
+# Retention policy duration in seconds
 
-# Enforce use of OS Login API
-resource "google_organization_policy" "require_os_login" {
-  constraint  = "constraints/compute.requireOsLogin"
-  org_id      = var.organization_id
 
-  boolean_policy {
-    enforced = true
-  }
 
-}
-
-# Skip creation of default networks
-# If using Shared VPCs this can be useful
-resource "google_organization_policy" "skip_default_network_creation" {
-  constraint  = "constraints/compute.skipDefaultNetworkCreation"
-  org_id      = var.organization_id
-
-  boolean_policy {
-    enforced = true
-  }
-
-}
-
-# Forces Bucket IAM only
-# While it takes away granularity of individual object permissions it also takes away ability to make object public (when used with domain restricted sharing)
+# Enforce uniform bucket-level access
 resource "google_organization_policy" "force_gcs_bucket_iam_only" {
   constraint  = "constraints/storage.uniformBucketLevelAccess"
   org_id      = var.organization_id
 
   boolean_policy {
     enforced = true
-  }
-
-}
-
-
-resource "google_organization_policy" "app_engine_disable_source_code_download" {
-  constraint = "constraints/appengine.disableCodeDownload"
-  org_id = var.organization_id
-
-  boolean_policy {
-    enforced = true
-  }
-
-}
-
-# Disable Internet Network Endpoit Groups
-resource "google_organization_policy" "disable_neg_groups" {
-  constraint = "constraints/compute.disableInternetNetworkEndpointGroup"
-  org_id = var.organization_id
-
-  boolean_policy {
-    enforced = true
-  }
-
-}
-
-# Limit Load Balancers Available for use (May grant exceptions where needed)
-resource "google_organization_policy" "restrict_load_balancer_creation" {
-  constraint  = "constraints/compute.restrictLoadBalancerCreationForTypes"
-  org_id      = var.organization_id
-
-  list_policy {
-    allow {
-      values = ["INTERNAL_TCP_UDP", "INTERNAL_HTTP_HTTPS"]
-    }
   }
 
 }
