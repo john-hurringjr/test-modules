@@ -42,15 +42,10 @@ resource "google_organization_policy" "app_engine_disable_source_code_download" 
 # Allowed ingress settings (Cloud Functions)
 
 
-
-
-
 # Allowed VPC Connector egress settings (Cloud Functions)
 
 
-
 # Require VPC Connector (Cloud Functions)
-
 
 
 /******************************************
@@ -59,8 +54,6 @@ resource "google_organization_policy" "app_engine_disable_source_code_download" 
 
 
 # Restrict default Google-managed encryption on Cloud SQL instances
-
-
 
 
 # Restrict Authorized Networks on Cloud SQL instances
@@ -223,7 +216,7 @@ resource "google_organization_policy" "external_ip_restricted" {
  *****************************************/
 
 # Disable Cloud Logging
-
+# Do not wish to use this at the Org node level, but rather in specific use cases.
 
 
 /******************************************
@@ -231,7 +224,7 @@ resource "google_organization_policy" "external_ip_restricted" {
  *****************************************/
 
 # Allow extending lifetime of OAuth 2.0 access tokens to up to 12 hours
-
+# Do not wish to use this at the Org node level, but rather in specific use cases.
 
 # Domain restricted sharing
 resource "google_organization_policy" "domain_restricted_sharing" {
@@ -247,7 +240,7 @@ resource "google_organization_policy" "domain_restricted_sharing" {
 }
 
 # Disable service account creation
-
+# Do not wish to use this at the Org node level, but rather in specific use cases.
 
 # Disable service account key creation
 resource "google_organization_policy" "disable_sa_keys" {
@@ -297,7 +290,7 @@ resource "google_organization_policy" "disable_auto_iam_default_sa" {
 
 
 # Retention policy duration in seconds
-
+# Do not wish to use this at the Org node level, but rather in specific use cases.
 
 
 # Enforce uniform bucket-level access
