@@ -25,7 +25,7 @@
  *****************************************/
 
 # Disable Source Code Download
-resource "google_organization_policy" "app_engine_disable_source_code_download" {
+resource "google_organization_policy" "app_eng_disable_code_download" {
   constraint = "constraints/appengine.disableCodeDownload"
   org_id = var.organization_id
 
@@ -40,7 +40,17 @@ resource "google_organization_policy" "app_engine_disable_source_code_download" 
  *****************************************/
 
 # Allowed ingress settings (Cloud Functions)
+resource "google_organization_policy" "functions_allowed_ingress_settings" {
+  constraint  = "constraints/cloudfunctions.allowedIngressSettings"
+  org_id      = var.organization_id
 
+  list_policy {
+    allow {
+      values = ["INTERNAL_TCP_UDP", "INTERNAL_HTTP_HTTPS"]
+    }
+  }
+
+}
 
 # Allowed VPC Connector egress settings (Cloud Functions)
 
@@ -79,7 +89,7 @@ resource "google_organization_policy" "cloud_sql_restrict_public_ip" {
 
 
 # Disable Internet Network Endpoint Groups
-resource "google_organization_policy" "disable_neg_groups" {
+resource "google_organization_policy" "gce_disable_internet_network_endpoint_group" {
   constraint = "constraints/compute.disableInternetNetworkEndpointGroup"
   org_id = var.organization_id
 
@@ -93,7 +103,7 @@ resource "google_organization_policy" "disable_neg_groups" {
 
 
 # Disable VM serial port access
-resource "google_organization_policy" "disable_serial_port" {
+resource "google_organization_policy" "gce_disable_serial_port_access" {
   constraint  = "compute.disableSerialPortAccess"
   org_id      = var.organization_id
 
@@ -104,7 +114,7 @@ resource "google_organization_policy" "disable_serial_port" {
 }
 
 # Disable VM serial port logging to Stackdriver	(Cloud Operations)
-resource "google_organization_policy" "disable_serial_port_logs" {
+resource "google_organization_policy" "gce_disable_serial_port_logging" {
   constraint  = "compute.disableSerialPortLogging"
   org_id      = var.organization_id
 
@@ -115,7 +125,7 @@ resource "google_organization_policy" "disable_serial_port_logs" {
 }
 
 # Require OS Login
-resource "google_organization_policy" "require_os_login" {
+resource "google_organization_policy" "gce_require_os_login" {
   constraint  = "constraints/compute.requireOsLogin"
   org_id      = var.organization_id
 
@@ -141,7 +151,7 @@ resource "google_organization_policy" "require_os_login" {
 
 
 # Restrict Load Balancer Creation Based on Load Balancer Types
-resource "google_organization_policy" "restrict_load_balancer_creation" {
+resource "google_organization_policy" "gce_restrict_load_balancer_creation_for_types" {
   constraint  = "constraints/compute.restrictLoadBalancerCreationForTypes"
   org_id      = var.organization_id
 
@@ -172,7 +182,7 @@ resource "google_organization_policy" "restrict_load_balancer_creation" {
 
 
 # Skip default network creation
-resource "google_organization_policy" "skip_default_network_creation" {
+resource "google_organization_policy" "gce_skip_default_network_creation" {
   constraint  = "constraints/compute.skipDefaultNetworkCreation"
   org_id      = var.organization_id
 
@@ -186,7 +196,7 @@ resource "google_organization_policy" "skip_default_network_creation" {
 
 
 # Restrict VM IP Forwarding
-resource "google_organization_policy" "disable_vm_ip_forward" {
+resource "google_organization_policy" "gce_vm_can_ip_forward" {
   constraint  = "compute.vmCanIpForward"
   org_id      = var.organization_id
 
@@ -199,7 +209,7 @@ resource "google_organization_policy" "disable_vm_ip_forward" {
 }
 
 # Define allowed external IPs for VM instances
-resource "google_organization_policy" "external_ip_restricted" {
+resource "google_organization_policy" "gce_vm_external_ip_access" {
   constraint  = "compute.vmExternalIpAccess"
   org_id      = var.organization_id
 
@@ -227,7 +237,7 @@ resource "google_organization_policy" "external_ip_restricted" {
 # Do not wish to use this at the Org node level, but rather in specific use cases.
 
 # Domain restricted sharing
-resource "google_organization_policy" "domain_restricted_sharing" {
+resource "google_organization_policy" "iam_allowed_policy_member_domains" {
   constraint  = "iam.allowedPolicyMemberDomains"
   org_id      = var.organization_id
 
@@ -243,7 +253,7 @@ resource "google_organization_policy" "domain_restricted_sharing" {
 # Do not wish to use this at the Org node level, but rather in specific use cases.
 
 # Disable service account key creation
-resource "google_organization_policy" "disable_sa_keys" {
+resource "google_organization_policy" "iam_disable_service_account_key_creation" {
   constraint  = "iam.disableServiceAccountKeyCreation"
   org_id      = var.organization_id
 
@@ -272,7 +282,7 @@ resource "google_organization_policy" "disable_sa_keys" {
  *****************************************/
 
 # Disable Automatic IAM Grants for Default Service Accounts
-resource "google_organization_policy" "disable_auto_iam_default_sa" {
+resource "google_organization_policy" "scm_automatic_iam_grants_for_default_service_accounts" {
   constraint  = "iam.automaticIamGrantsForDefaultServiceAccounts"
   org_id      = var.organization_id
 
@@ -294,7 +304,7 @@ resource "google_organization_policy" "disable_auto_iam_default_sa" {
 
 
 # Enforce uniform bucket-level access
-resource "google_organization_policy" "force_gcs_bucket_iam_only" {
+resource "google_organization_policy" "gcs_uniform_bucket_level_access" {
   constraint  = "constraints/storage.uniformBucketLevelAccess"
   org_id      = var.organization_id
 
