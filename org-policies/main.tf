@@ -53,7 +53,17 @@ resource "google_organization_policy" "functions_allowed_ingress_settings" {
 }
 
 # Allowed VPC Connector egress settings (Cloud Functions)
+resource "google_organization_policy" "functions_allowed_vpc_connector_egress_settings" {
+  constraint  = "constraints/cloudfunctions.allowedVpcConnectorEgressSettings"
+  org_id      = var.organization_id
 
+  list_policy {
+    allow {
+      values = ["PRIVATE_RANGES_ONLY"]
+    }
+  }
+
+}
 
 # Require VPC Connector (Cloud Functions)
 
@@ -86,6 +96,15 @@ resource "google_organization_policy" "cloud_sql_restrict_public_ip" {
  *****************************************/
 
 # Disable Guest Attributes of Compute Engine metadata
+resource "google_organization_policy" "gce_disable_guest_attributes_access" {
+  constraint = "constraints/compute.disableGuestAttributesAccess"
+  org_id = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
 
 
 # Disable Internet Network Endpoint Groups
@@ -100,7 +119,15 @@ resource "google_organization_policy" "gce_disable_internet_network_endpoint_gro
 }
 
 # Disable VM nested virtualization
+resource "google_organization_policy" "gce_disable_nested_virtualization" {
+  constraint = "constraints/compute.disableNestedVirtualization"
+  org_id = var.organization_id
 
+  boolean_policy {
+    enforced = true
+  }
+
+}
 
 # Disable VM serial port access
 resource "google_organization_policy" "gce_disable_serial_port_access" {
@@ -136,13 +163,31 @@ resource "google_organization_policy" "gce_require_os_login" {
 }
 
 # Shielded VMs
+resource "google_organization_policy" "gce_require_shielded_vm" {
+  constraint  = "constraints/compute.requireShieldedVm"
+  org_id      = var.organization_id
 
+  boolean_policy {
+    enforced = true
+  }
+
+}
 
 # Restrict Authenticated Google Connection
 
 
 # Restrict Cloud NAT usage
+resource "google_organization_policy" "gce_restrict_cloud_nat_usage" {
+  constraint  = "constraints/compute.restrictCloudNATUsage"
+  org_id      = var.organization_id
 
+  list_policy {
+    deny {
+      all = true
+    }
+  }
+
+}
 
 # Restrict Dedicated Interconnect usage
 
@@ -164,9 +209,34 @@ resource "google_organization_policy" "gce_restrict_load_balancer_creation_for_t
 }
 
 # Restrict Non-Confidential Computing
+resource "google_organization_policy" "gce_restrict_non_confidential_computing" {
+  constraint  = "constraints/compute.restrictNonConfidentialComputing"
+  org_id      = var.organization_id
 
+  list_policy {
+    deny {
+      all = true
+    }
+  }
+
+}
 
 # Restrict Partner Interconnect usage
+
+
+
+# Restrict Protocol Forwarding Based on type of IP Address
+resource "google_organization_policy" "gce_restrict_protocol_forwarding_creation_for_types" {
+  constraint  = "constraints/compute.restrictProtocolForwardingCreationForTypes"
+  org_id      = var.organization_id
+
+  list_policy {
+    allow {
+      values = ["INTERNAL"]
+    }
+  }
+
+}
 
 
 # Restrict Shared VPC Host Projects
@@ -193,6 +263,9 @@ resource "google_organization_policy" "gce_skip_default_network_creation" {
 }
 
 # Compute Storage resource use restrictions (Compute Engine disks, images, and snapshots)
+
+
+# Define trusted image projects
 
 
 # Restrict VM IP Forwarding
