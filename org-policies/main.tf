@@ -46,7 +46,7 @@ resource "google_organization_policy" "functions_allowed_ingress_settings" {
 
   list_policy {
     allow {
-      values = ["INTERNAL_TCP_UDP", "INTERNAL_HTTP_HTTPS"]
+      values = ["ALLOW_INTERNAL_ONLY"]
     }
   }
 
