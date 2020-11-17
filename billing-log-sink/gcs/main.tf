@@ -22,8 +22,7 @@ resource "google_storage_bucket" "billing_sink_bucket" {
   location  = var.gcs_bucket_location
   name      = var.gcs_bucket_name
 
-  bucket_policy_only = true
-
+  uniform_bucket_level_access = true
 
   retention_policy {
     is_locked         = var.gcs_bucket_lock_enabled
