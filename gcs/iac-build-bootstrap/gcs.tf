@@ -23,7 +23,8 @@ resource "google_storage_bucket" "gcs_bucket_for_backend_var_files" {
   project             = var.project_id
   location            = "US"
   storage_class       = "MULTI_REGIONAL"
-  bucket_policy_only  = true
+
+  uniform_bucket_level_access = true
 
   versioning {
     enabled = true
