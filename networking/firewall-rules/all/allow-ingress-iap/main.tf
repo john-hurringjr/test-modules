@@ -24,8 +24,11 @@ resource "google_compute_firewall" "firewall_rule" {
   network         = var.network_self_link
   direction       = "INGRESS"
   priority        = var.priority
-  enable_logging  = var.enable_logging
   source_ranges   = ["35.235.240.0/20"]
+
+  log_config {
+    metadata = var.logging_metadata
+  }
 
   allow {
     protocol = "tcp"
