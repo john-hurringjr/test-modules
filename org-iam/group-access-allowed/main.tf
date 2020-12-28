@@ -114,6 +114,13 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   }
 
   binding {
+    role    = "roles/compute.orgSecurityPolicyAdmin"
+    members = [
+      "serviceAccount:${var.terraform_service_account}"
+    ]
+  }
+
+  binding {
     role    = "roles/logging.admin"
     members = ["serviceAccount:${var.terraform_service_account}"
     ]
