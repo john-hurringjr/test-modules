@@ -146,6 +146,7 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  # Required to manage VPC Service Controls
   binding {
     role    = "roles/accesscontextmanager.policyAdmin"
     members = [
@@ -153,6 +154,7 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  # Required to add new projects to perimeter
   binding {
     role    = "roles/accesscontextmanager.policyEditor"
     members = [
@@ -175,6 +177,7 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  # Required to manage Shared VPCs
   binding {
     role    = "roles/compute.xpnAdmin"
     members = [
@@ -197,6 +200,21 @@ data "google_iam_policy" "org_node_iam_policy_data" {
 
   binding {
     role = "roles/threatdetection.editor"
+    members = [
+      "serviceAccount:${var.terraform_org_service_account}",
+    ]
+  }
+
+  # Required to use Hierarchical firewall rules
+  binding {
+    role    = "roles/compute.orgSecurityPolicyAdmin"
+    members = [
+      "serviceAccount:${var.terraform_org_service_account}",
+    ]
+  }
+
+  binding {
+    role    = "roles/compute.orgSecurityResourceAdmin"
     members = [
       "serviceAccount:${var.terraform_org_service_account}",
     ]
