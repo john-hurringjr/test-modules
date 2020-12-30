@@ -53,18 +53,6 @@ variable "billing_account_id" {
   default     = ""
 }
 
-variable "label_business_unit" {
-  description = "Example label for project."
-  type        = string
-  default     = ""
-}
-
-variable "label_restrictions" {
-  description = "Example label for project."
-  type        = string
-  default     = ""
-}
-
 variable "project_viewer_group" {
   description = "Group who will have admin permissions for project"
   type        = string
@@ -81,44 +69,4 @@ variable "service_perimeter_name" {
   description = "VPC SC Perimeter project will be added to"
   type        = string
   default     = ""
-}
-
-variable "subnet_1_region" {
-  description = "The region that subnet 1 resides in for host vpc"
-  type        = string
-}
-
-variable "subnet_2_region" {
-  description = "The region that subnet 2 resides in for host vpc"
-  type        = string
-}
-
-variable "subnet_3_region" {
-  description = "The region that subnet 3 resides in for host vpc"
-  type        = string
-}
-
-variable "subnet_4_region" {
-  description = "The region that subnet 4 resides in for host vpc"
-  type        = string
-}
-
-variable "subnet_1_name" {
-  description = "The name of subnet 1"
-  type        = string
-}
-
-variable "subnet_2_name" {
-  description = "The name of subnet 2"
-  type        = string
-}
-
-variable "subnet_3_name" {
-  description = "The name of subnet 3"
-  type        = string
-}
-
-variable "subnet_4_name" {
-  description = "The name of subnet 4"
-  type        = string
 }

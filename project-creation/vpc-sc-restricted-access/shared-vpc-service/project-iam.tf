@@ -31,20 +31,11 @@ data "google_iam_policy" "project_iam_policy_data" {
 
   # Project Admins & Appropriate Service Accounts
 
-
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/bigquery.admin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-
   binding {
-    role = "roles/viewer"
+    role = "roles/bigquery.admin"
     members = [
-      "group:${var.project_viewer_group}",
+      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
 
@@ -56,52 +47,50 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/binaryauthorization.attestorsAdmin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-//
-//  binding {
-//    role = "roles/binaryauthorization.policyAdmin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-//
-//  binding {
-//    role = "roles/binaryauthorization.serviceAgent"
-//    members = [
-//      "serviceAccount:service-${google_project.project.number}@gcp-sa-binaryauthorization.iam.gserviceaccount.com",
-//    ]
-//  }
+  binding {
+    role = "roles/binaryauthorization.attestorsAdmin"
+    members = [
+      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
 
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/cloudbuild.builds.editor"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-//
-//  binding {
-//    role = "roles/cloudbuild.builds.builder"
-//    members = [
-//      "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com",
-//    ]
-//  }
-//
-//  binding {
-//    role = "roles/cloudbuild.serviceAgent"
-//    members = [
-//      "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
-//    ]
-//  }
+  binding {
+    role = "roles/binaryauthorization.policyAdmin"
+    members = [
+      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/binaryauthorization.serviceAgent"
+    members = [
+      "serviceAccount:service-${google_project.project.number}@gcp-sa-binaryauthorization.iam.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/cloudbuild.builds.editor"
+    members = [
+      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/cloudbuild.builds.builder"
+    members = [
+      "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com",
+    ]
+  }
+
+  binding {
+    role = "roles/cloudbuild.serviceAgent"
+    members = [
+      "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com",
+    ]
+  }
 
   binding {
     role = "roles/cloudfunctions.admin"

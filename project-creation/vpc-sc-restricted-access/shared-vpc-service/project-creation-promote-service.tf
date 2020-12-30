@@ -22,12 +22,6 @@ resource "google_project" "project" {
   project_id      = "${var.unique_shared_id}-${var.environment}-${var.unique_project_identifier}"
   folder_id       = var.folder_id
   billing_account = var.billing_account_id
-
-  labels = {
-    business_unit = var.label_business_unit
-    restrictions  = var.label_restrictions
-  }
-
 }
 
 /******************************************
