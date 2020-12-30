@@ -395,7 +395,7 @@ data "google_iam_policy" "project_iam_policy_data" {
  *****************************************/
 
 resource "google_project_iam_policy" "project_iam_policy" {
-  depends_on  = [google_project.project, google_project_service.enable_compute_api, google_service_account.new_project_default_service_account, google_project_service.enable_gke_api]
+  depends_on  = [google_project.project, google_project_service.enable_compute_api, google_service_account.new_project_default_service_account, google_project_service.enable_gke_api, google_project_service.enable_binaryauthorization_api]
   policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
   project     = google_project.project.project_id
 }
