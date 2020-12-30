@@ -273,21 +273,22 @@ resource "google_organization_policy" "gce_skip_default_network_creation" {
 }
 
 # Compute Storage resource use restrictions (Compute Engine disks, images, and snapshots)
-resource "google_organization_policy" "gce_restrict_storage_resources" {
-  constraint  = "constraints/compute.storageResourceUseRestrictions"
-  org_id      = var.organization_id
-
-  list_policy {
-    allow {
-      values = ["under:organizations/${var.organization_id}",
-        "under:projects/debian-cloud",
-        "under:projects/cos-cloud",
-        "under:projects/centros-cloud",
-        "under:projects/ubuntu-os-cloud"]
-    }
-  }
-
-}
+//resource "google_organization_policy" "gce_restrict_storage_resources" {
+//  constraint  = "constraints/compute.storageResourceUseRestrictions"
+//  org_id      = var.organization_id
+//
+//  list_policy {
+//    allow {
+//      values = ["under:organizations/${var.organization_id}",
+//        "under:projects/debian-cloud",
+//        "under:projects/cos-cloud",
+//        "under:projects/centros-cloud",
+//        "under:projects/ubuntu-os-cloud"
+//      ]
+//    }
+//  }
+//
+//}
 
 # Define trusted image projects
 
