@@ -279,13 +279,11 @@ resource "google_organization_policy" "gce_restrict_storage_resources" {
 
   list_policy {
     allow {
-      values = [
-        "under:organizations/${var.organization_id}",
+      values = ["under:organizations/${var.organization_id}",
         "under:projects/debian-cloud",
         "under:projects/cos-cloud",
         "under:projects/centros-cloud",
-        "under:projects/ubuntu-os-cloud"
-      ]
+        "under:projects/ubuntu-os-cloud"]
     }
   }
 
