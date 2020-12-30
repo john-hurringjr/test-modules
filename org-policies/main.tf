@@ -246,7 +246,17 @@ resource "google_organization_policy" "gce_restrict_protocol_forwarding_creation
 
 
 # Restrict VPC peering usage
+resource "google_organization_policy" "gce_restrict_vpc_peering_usage" {
+  constraint  = "constraints/compute.restrictSharedVpcSubnetworks"
+  org_id      = var.organization_id
 
+  list_policy {
+    allow {
+      values = ["under:organizations/${var.organization_id}"]
+    }
+  }
+
+}
 
 # Restrict VPN Peer IPs
 
@@ -263,7 +273,23 @@ resource "google_organization_policy" "gce_skip_default_network_creation" {
 }
 
 # Compute Storage resource use restrictions (Compute Engine disks, images, and snapshots)
+resource "google_organization_policy" "gce_restrict_storage_resources" {
+  constraint  = "constraints/compute.storageResourceUseRestrictions"
+  org_id      = var.organization_id
 
+  list_policy {
+    allow {
+      values = [
+        "under:organizations/${var.organization_id}",
+        "under:projects/debian-cloud",
+        "under:projects/cos-cloud",
+        "under:projects/centros-cloud",
+        "under:projects/ubuntu-os-cloud"
+      ]
+    }
+  }
+
+}
 
 # Define trusted image projects
 
@@ -337,7 +363,15 @@ resource "google_organization_policy" "iam_disable_service_account_key_creation"
 }
 
 # Disable Service Account Key Upload
+resource "google_organization_policy" "iam_disable_service_account_key_upload" {
+  constraint  = "constraints/iam.disableServiceAccountKeyUpload"
+  org_id      = var.organization_id
 
+  boolean_policy {
+    enforced = true
+  }
+
+}
 
 # Disable Workload Identity Cluster Creation
 
