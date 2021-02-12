@@ -92,6 +92,28 @@ resource "google_organization_policy" "cloud_sql_restrict_public_ip" {
 }
 
 /******************************************
+  Cloud Storage
+ *****************************************/
+
+# Google Cloud Platform - Detailed Audit Logging Mode
+
+
+# Retention policy duration in seconds
+# Do not wish to use this at the Org node level, but rather in specific use cases.
+
+
+# Enforce uniform bucket-level access
+resource "google_organization_policy" "gcs_uniform_bucket_level_access" {
+  constraint  = "constraints/storage.uniformBucketLevelAccess"
+  org_id      = var.organization_id
+
+  boolean_policy {
+    enforced = true
+  }
+
+}
+
+/******************************************
   Compute Engine
  *****************************************/
 
@@ -390,28 +412,6 @@ resource "google_organization_policy" "iam_disable_service_account_key_upload" {
 # Disable Automatic IAM Grants for Default Service Accounts
 resource "google_organization_policy" "scm_automatic_iam_grants_for_default_service_accounts" {
   constraint  = "iam.automaticIamGrantsForDefaultServiceAccounts"
-  org_id      = var.organization_id
-
-  boolean_policy {
-    enforced = true
-  }
-
-}
-
-/******************************************
-  Cloud Storage
- *****************************************/
-
-# Google Cloud Platform - Detailed Audit Logging Mode
-
-
-# Retention policy duration in seconds
-# Do not wish to use this at the Org node level, but rather in specific use cases.
-
-
-# Enforce uniform bucket-level access
-resource "google_organization_policy" "gcs_uniform_bucket_level_access" {
-  constraint  = "constraints/storage.uniformBucketLevelAccess"
   org_id      = var.organization_id
 
   boolean_policy {
