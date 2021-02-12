@@ -252,7 +252,7 @@ data "google_iam_policy" "project_iam_policy_data" {
   }
 
     binding {
-      role = "iap.tunnelResourceAccessor"
+      role = "roles/iap.tunnelResourceAccessor"
       members = [
         "group:${var.project_admin_group_id}",
       ]
