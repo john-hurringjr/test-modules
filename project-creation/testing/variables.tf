@@ -59,12 +59,6 @@ variable "billing_account_id" {
   default     = ""
 }
 
-variable "shared_vpc_host_project_id" {
-  description = "Project ID of Shared VPC Host Project"
-  type        = string
-  default     = ""
-}
-
 variable "service_perimeter_name" {
   description = "VPC SC Perimeter project will be added to"
   type        = string
