@@ -226,3 +226,10 @@ resource "google_project_service" "enable_composer_api" {
   service             = "composer.googleapis.com"
   disable_on_destroy  = false
 }
+
+resource "google_project_service" "enable_redis_api" {
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
+  project             = google_project.project.project_id
+  service             = "redis.googleapis.com"
+  disable_on_destroy  = false
+}
