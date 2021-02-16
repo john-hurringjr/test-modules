@@ -313,7 +313,7 @@ data "google_iam_policy" "project_iam_policy_data" {
   }
 
   binding {
-    role = "roles/redis.ServiceAgent"
+    role = "roles/redis.serviceAgent"
     members = [
       "serviceAccount:service-${google_project.project.number}@cloud-redis.iam.gserviceaccount.com",
     ]
