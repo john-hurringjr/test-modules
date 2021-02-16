@@ -312,6 +312,15 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
+  binding {
+    role = "roles/redis.admin"
+    members = [
+      "group:${var.project_admin_group_id}",
+      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
+      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
+    ]
+  }
+
 }
 
 /******************************************
