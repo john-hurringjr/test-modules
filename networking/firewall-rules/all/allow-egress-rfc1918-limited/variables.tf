@@ -41,8 +41,8 @@ variable "priority" {
   default     = 1000
 }
 
-variable "enable_logging" {
-  description = "Defaults to true. Set to false to disable logging."
-  type        = bool
-  default     = true
+variable "logging_metadata" {
+  description = "Defaults to INCLUDE_ALL_METADATA."
+  type        = string
+  default     = "INCLUDE_ALL_METADATA"
 }
