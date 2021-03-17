@@ -231,17 +231,18 @@ resource "google_organization_policy" "gce_restrict_load_balancer_creation_for_t
 }
 
 # Restrict Non-Confidential Computing
-resource "google_organization_policy" "gce_restrict_non_confidential_computing" {
-  constraint  = "constraints/compute.restrictNonConfidentialComputing"
-  org_id      = var.organization_id
-
-  list_policy {
-    deny {
-      all = true
-    }
-  }
-
-}
+# Will add back when more options available
+//resource "google_organization_policy" "gce_restrict_non_confidential_computing" {
+//  constraint  = "constraints/compute.restrictNonConfidentialComputing"
+//  org_id      = var.organization_id
+//
+//  list_policy {
+//    deny {
+//      all = true
+//    }
+//  }
+//
+//}
 
 # Restrict Partner Interconnect usage
 
