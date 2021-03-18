@@ -17,7 +17,7 @@
   Project IAM
  *****************************************/
 
-resource "google_project_iam_member" "project_admin_group" {
+resource "google_project_iam_member" "project_admin_group_prj" {
   project = google_project.project.project_id
   member  = "group:${var.project_admin_group_id}"
   role    = "roles/owner"
@@ -33,7 +33,7 @@ resource "google_project_iam_member" "cloud_services" {
   role    = "roles/compute.networkUser"
 }
 
-resource "google_project_iam_member" "project_admin_group" {
+resource "google_project_iam_member" "project_admin_group_host" {
   project = var.shared_vpc_host_project_id
   member  = "group:${var.project_admin_group_id}"
   role    = "roles/compute.networkUser"
