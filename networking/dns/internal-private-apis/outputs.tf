@@ -18,16 +18,16 @@
  *****************************************/
 
 output "dns_managed_zone_id" {
-  value       = google_dns_managed_zone.private_zone.id
+  value       = google_dns_managed_zone.private_googleapis_zone.id
   description = "ID for private zone created"
 }
 
 output "dns_record_set_a_record_id" {
-  value       = google_dns_record_set.private_api_access_a_record.id
+  value       = google_dns_record_set.private_googleapis_a_record.id
   description = "ID for A record set created"
 }
 
 output "dns_record_set_cname_record_id" {
-  value       = google_dns_record_set.private_api_access_cname_record.id
+  value       = google_dns_record_set.private_googleapis_cname_record.id
   description = "ID for CNAME record set created"
 }
