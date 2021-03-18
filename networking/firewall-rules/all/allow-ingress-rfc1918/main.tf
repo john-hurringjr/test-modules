@@ -23,9 +23,12 @@ resource "google_compute_firewall" "firewall_rule" {
   name            = "${var.network_name}-allow-all-rfc-1918-ingress-all"
   network         = var.network_self_link
   direction       = "INGRESS"
-  enable_logging  = var.enable_logging
   priority        = var.priority
   source_ranges = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+
+  log_config {
+    metadata = var.logging_metadata
+  }
 
   allow {
     protocol = "icmp"

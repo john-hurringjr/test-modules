@@ -22,10 +22,13 @@ resource "google_compute_firewall" "firewall_rule" {
   project             = var.project_id
   name                = "${var.network_name}-deny-all-egress-all"
   network             = var.network_self_link
-  enable_logging      = var.enable_logging
   direction           = "EGRESS"
   priority            = var.priority
   destination_ranges  = ["0.0.0.0/0"]
+
+  log_config {
+    metadata = var.logging_metadata
+  }
 
   deny {
     protocol = "tcp"

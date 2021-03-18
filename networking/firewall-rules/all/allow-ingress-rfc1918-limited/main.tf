@@ -24,9 +24,12 @@ resource "google_compute_firewall" "firewall_rule" {
   network         = var.network_self_link
   description     = "Allows ingress of SSH, RDP, HTTPS from all rfc1918 ranges."
   direction       = "INGRESS"
-  enable_logging  = var.enable_logging
   priority        = var.priority
   source_ranges = ["10.0.0.0/8", "192.168.0.0/16", "172.16.0.0/12"]
+
+  log_config {
+    metadata = var.logging_metadata
+  }
 
   allow {
     protocol = "tcp"

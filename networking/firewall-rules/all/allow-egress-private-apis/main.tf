@@ -24,9 +24,12 @@ resource "google_compute_firewall" "firewall_rule" {
   network             = var.network_self_link
   description         = "Allows egress of all VMs to Google Private APIs VIP:199.36.153.8/30"
   direction           = "EGRESS"
-  enable_logging      = var.enable_logging
   priority            = var.priority
   destination_ranges  = ["199.36.153.8/30"]
+
+  log_config {
+    metadata = var.logging_metadata
+  }
 
   allow {
     protocol = "tcp"
