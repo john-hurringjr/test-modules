@@ -107,16 +107,6 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/cloudiot.admin"
-//    members = [
-//      "group:${var.project_admin_group_id}",
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-
   binding {
     role = "roles/cloudkms.admin"
     members = [
@@ -125,16 +115,6 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/cloudscheduler.admin"
-//    members = [
-//      "group:${var.project_admin_group_id}",
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-
   binding {
     role = "roles/cloudsql.admin"
     members = [
@@ -142,15 +122,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
-
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/cloudtasks.admin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
 
   binding {
     role = "roles/cloudtrace.admin"
@@ -167,16 +138,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
-
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/composer.admin"
-//    members = [
-//      "group:${var.project_admin_group_id}",
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
 
   binding {
     role = "roles/compute.instanceAdmin.v1"
@@ -200,14 +161,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
-
-  # Which api creates this?
-//  binding {
-//    role = "roles/containeranalysis.ServiceAgent"
-//    members = [
-//      "serviceAccount:service-${google_project.project.number}@container-analysis.iam.gserviceaccount.com",
-//    ]
-//  }
 
   binding {
     role = "roles/container.serviceAgent"
@@ -238,24 +191,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/datastore.owner"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/dialogflow.admin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-
 
   binding {
     role = "roles/dlp.admin"
@@ -264,15 +199,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
-
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/errorreporting.admin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
 
   binding {
     role = "roles/gkehub.admin"
@@ -298,15 +224,6 @@ data "google_iam_policy" "project_iam_policy_data" {
     ]
   }
 
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/iap.admin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-
   binding {
     role = "roles/logging.admin"
     members = [
@@ -330,31 +247,6 @@ data "google_iam_policy" "project_iam_policy_data" {
       "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
     ]
   }
-
-  #Not current supported by VPC SC
-//  binding {
-//    role = "roles/redis.admin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-
-  # Not currently supported by VPC SC
-  //  binding {
-//    role = "roles/run.admin"
-//    members = [
-//      "serviceAccount:${google_service_account.new_project_default_service_account.email}",
-//      "serviceAccount:${google_project.project.number}@cloudservices.gserviceaccount.com",
-//    ]
-//  }
-//
-//  binding {
-//    role = "roles/run.serviceAgent"
-//    members = [
-//      "serviceAccount:service-${google_project.project.number}@serverless-robot-prod.iam.gserviceaccount.com",
-//    ]
-//  }
 
   binding {
     role = "roles/secretmanager.admin"
@@ -395,7 +287,19 @@ data "google_iam_policy" "project_iam_policy_data" {
  *****************************************/
 
 resource "google_project_iam_policy" "project_iam_policy" {
-  depends_on  = [google_project.project, google_project_service.enable_compute_api, google_service_account.new_project_default_service_account, google_project_service.enable_gke_api, google_project_service.enable_binaryauthorization_api]
+  depends_on  = [
+    google_project.project,
+    google_project_service.enable_compute_api,
+    google_service_account.new_project_default_service_account,
+    google_project_service.enable_gke_api,
+    google_project_service.enable_binaryauthorization_api,
+    google_project_service.enable_cloudbuild_api,
+    google_project_service.enable_cloudfunctions_api,
+    google_project_service.enable_cloudkms_api,
+    google_project_service.enable_dataflow_api,
+    google_project_service.enable_bigtable_api,
+    google_project_service.enable_bigquery_api,
+  ]
   policy_data = data.google_iam_policy.project_iam_policy_data.policy_data
   project     = google_project.project.project_id
 }
