@@ -59,7 +59,7 @@ resource "google_organization_policy" "functions_allowed_vpc_connector_egress_se
 
   list_policy {
     allow {
-      values = ["PRIVATE_RANGES_ONLY"]
+      values = ["ALL_TRAFFIC"]
     }
   }
 
