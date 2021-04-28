@@ -229,6 +229,14 @@ data "google_iam_policy" "org_node_iam_policy_data" {
     ]
   }
 
+  binding {
+    role = "roles/resourcemanager.tagAdmin"
+    members = [
+      "serviceAccount:${var.terraform_org_service_account}",
+    ]
+  }
+
+
   # For security team:
   binding {
     role    = "roles/securitycenter.adminViewer"

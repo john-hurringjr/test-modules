@@ -121,6 +121,13 @@ data "google_iam_policy" "org_node_iam_policy_data" {
   }
 
   binding {
+    role = "roles/resourcemanager.tagAdmin"
+    members = [
+      "serviceAccount:${var.terraform_org_service_account}",
+    ]
+  }
+
+  binding {
     role = "roles/billing.creator"
     members = [
       "group:${var.billing_admins_group}",
