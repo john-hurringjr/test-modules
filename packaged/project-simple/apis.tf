@@ -13,30 +13,139 @@
  * limitations under the License.
  */
 
-locals {
-  activate_services = [
-    "logging.googleapis.com",
-    "accesscontextmanager.googleapis.com",
-    "iam.googleapis.com",
-    "serviceusage.googleapis.com",
-    "cloudresourcemanager.googleapis.com",
-    "servicemanagement.googleapis.com",
-    "storage-component.googleapis.com",
-    "storage-api.googleapis.com",
-    "cloudbilling.googleapis.com",
-    "billingbudgets.googleapis.com",
-    "cloudbuild.googleapis.com",
-    "container.googleapis.com",
-    "secretmanager.googleapis.com",
-  ]
-}
 /******************************************
   APIs
  *****************************************/
 
-resource "google_project_service" "enable_apis" {
-  for_each            = local.activate_services
+resource "google_project_service" "enable_logging_api" {
+  depends_on          = [google_project.project]
   project             = google_project.project.project_id
-  service             = each.value
+  service             = "logging.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_accesscontextmanager_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "accesscontextmanager.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_iam_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "iam.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_serviceusage_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "serviceusage.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_resourcemanager_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "cloudresourcemanager.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_servicemanagement_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "servicemanagement.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_storagecomponent_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "storage-component.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_storage_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "storage-api.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_billing_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "cloudbilling.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_budget_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "billingbudgets.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_build_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "cloudbuild.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_gke_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "container.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_secret_manager_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "secretmanager.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_dns_api" {
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
+  project             = google_project.project.project_id
+  service             = "dns.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_network_management_api" {
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
+  project             = google_project.project.project_id
+  service             = "networkmanagement.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "firewall_insights_api" {
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
+  project             = google_project.project.project_id
+  service             = "firewallinsights.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_service_networking_api" {
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
+  project             = google_project.project.project_id
+  service             = "servicenetworking.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_oslogin_api" {
+  depends_on          = [google_project.project, google_project_service.enable_compute_api]
+  project             = google_project.project.project_id
+  service             = "oslogin.googleapis.com"
+  disable_on_destroy  = false
+}
+
+resource "google_project_service" "enable_compute_api" {
+  depends_on          = [google_project.project]
+  project             = google_project.project.project_id
+  service             = "compute.googleapis.com"
   disable_on_destroy  = false
 }
