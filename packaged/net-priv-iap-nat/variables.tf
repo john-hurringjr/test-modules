@@ -24,7 +24,7 @@ variable "project_id" {
 
 variable "network_name" {
   type        = string
-  default     = "restricted-vpc"
+  default     = "private-vpc"
 }
 
 variable "priority" {
