@@ -68,6 +68,35 @@ resource "google_organization_policy" "functions_allowed_vpc_connector_egress_se
 # Require VPC Connector (Cloud Functions)
 
 
+
+/******************************************
+  Compute Run
+ *****************************************/
+# Allowed ingress settings (Cloud Run)
+resource "google_organization_policy" "functions_allowed_ingress_settings" {
+  constraint  = "constraints/cloudfunctions.allowedIngressSettings"
+  org_id      = var.organization_id
+
+  list_policy {
+    allow {
+      values = ["internal-and-cloud-load-balancing"]
+    }
+  }
+
+}
+# Allowed VPC Connector egress settings (Cloud Run)
+resource "google_organization_policy" "functions_allowed_vpc_connector_egress_settings" {
+  constraint  = "constraints/run.allowedVPCEgress"
+  org_id      = var.organization_id
+
+  list_policy {
+    allow {
+      values = ["all-traffic"]
+    }
+  }
+
+}
+
 /******************************************
   Cloud SQL
  *****************************************/
