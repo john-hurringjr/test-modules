@@ -19,7 +19,7 @@
 
 resource "google_organization_iam_member" "org_admin" {
   depends_on  = [google_project_service.enable_build_api, google_project.project]
-  member      = "serviceAccount:${google_project.project.number}cloudbuild.gserviceaccount.com"
+  member      = "serviceAccount:${google_project.project.number}@cloudbuild.gserviceaccount.com"
   org_id      = var.org_id
   role        = "roles/resourcemanager.organizationAdmin"
 }
