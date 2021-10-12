@@ -17,22 +17,24 @@
   Input Variables
  *****************************************/
 
-variable "unique_project_id" {
-  description = "A unique ID for your org to start all project IDs"
+variable "project_id_category" {
+  description = "A  category to help distinguish this set of projects from another set"
   type        = string
-  default     = ""
+}
+
+variable "project_id_unique" {
+  description = "A unique descriptor for your project"
+  type = string
 }
 
 variable "org_id" {
   description = "The folder ID of where the project will reside."
   type        = string
-  default     = ""
 }
 
 variable "billing_account_id" {
   description = "Billing Account ID where costs of the project will be charged."
   type        = string
-  default     = ""
 }
 
 variable "apis_to_enable" {
