@@ -38,5 +38,5 @@ variable "billing_account_id" {
 }
 
 variable "apis_to_enable" {
-  type = list()
+  type = list(string)
 }
