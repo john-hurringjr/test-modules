@@ -17,9 +17,13 @@
   APIs
  *****************************************/
 
+locals {
+  mapped_apis = toset(var.apis_to_enable)
+}
+
 resource "google_project_service" "enable_api" {
   depends_on          = [google_project.project]
-  for_each            = var.apis_to_enable
+  for_each            = local.mapped_apis
   project             = google_project.project.project_id
   service             = each.value
   disable_on_destroy  = false
