@@ -27,7 +27,7 @@ variable "project_id_unique" {
   type = string
 }
 
-variable "org_id" {
+variable "folder_id" {
   description = "The folder ID of where the project will reside."
   type        = string
 }

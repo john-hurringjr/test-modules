@@ -20,8 +20,8 @@
 resource "google_project" "project" {
   name            = "${var.project_id_category}-${var.project_id_unique}-${random_string.random_string.result}"
   project_id      = "${var.project_id_category}-${var.project_id_unique}-${random_string.random_string.result}"
-  org_id          = var.org_id
   billing_account = var.billing_account_id
+  folder_id       = var.folder_id
 }
 
 resource "random_string" "random_string" {
