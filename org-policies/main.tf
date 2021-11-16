@@ -73,8 +73,8 @@ resource "google_organization_policy" "functions_allowed_vpc_connector_egress_se
   Compute Run
  *****************************************/
 # Allowed ingress settings (Cloud Run)
-resource "google_organization_policy" "functions_allowed_ingress_settings" {
-  constraint  = "constraints/cloudfunctions.allowedIngressSettings"
+resource "google_organization_policy" "cloud_run_allowed_ingress_settings" {
+  constraint  = "constraints/run.allowedIngress"
   org_id      = var.organization_id
 
   list_policy {
@@ -85,7 +85,7 @@ resource "google_organization_policy" "functions_allowed_ingress_settings" {
 
 }
 # Allowed VPC Connector egress settings (Cloud Run)
-resource "google_organization_policy" "functions_allowed_vpc_connector_egress_settings" {
+resource "google_organization_policy" "cloud_run_allowed_egress_settings" {
   constraint  = "constraints/run.allowedVPCEgress"
   org_id      = var.organization_id
 
