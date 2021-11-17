@@ -29,6 +29,6 @@ resource "google_storage_bucket_iam_member" "cloud_build_sa_cloud_build_logs_gcs
   depends_on = [google_service_account.cloud_build_service_account]
   for_each = local.folder_list
   bucket = google_storage_bucket.cloud_build_logs_bucket.id
-  member = "serviceAccount:ccsa-${each.value}@${var.project_id}.iam.gserviceaccount.com"
+  member = "serviceAccount:cbsa-${each.value}@${var.project_id}.iam.gserviceaccount.com"
   role   = "roles/storage.admin"
 }
