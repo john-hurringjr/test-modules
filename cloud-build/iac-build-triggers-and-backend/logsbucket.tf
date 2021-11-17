@@ -33,7 +33,10 @@ resource "google_storage_bucket" "cloud_build_logs_bucket" {
 resource "google_storage_bucket_object" "logs_folders" {
   for_each = local.folder_list
   bucket = google_storage_bucket.cloud_build_logs_bucket.name
+  // Trailing / will make this a directory
   name   = "${each.value}/"
+  // below required despite note being used... :(
+  content = "foo"
 }
 
 /******************************************
