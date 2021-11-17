@@ -37,6 +37,8 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
 
   build {
 
+    // Required when using customer SA rather tha cloud build SA
+    // Location to write logs to for the run
     logs_bucket = "${google_storage_bucket.cloud_build_logs_bucket.url}/${each.value}"
 
 
