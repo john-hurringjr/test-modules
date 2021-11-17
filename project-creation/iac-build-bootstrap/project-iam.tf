@@ -13,6 +13,6 @@ locals {
 
 resource "google_project_iam_member" "iam_member" {
   for_each  = local.role_list
-  member    = var.user_id
+  member    = "user:${var.user_id}"
   role      = each.value
 }
