@@ -65,10 +65,12 @@ resource "google_cloudbuild_trigger" "pull_and_apply_trigger" {
   github {
     owner = var.github_repo_owner
     name = var.github_repo_name
-    push {
-      branch = var.push_branch_trigger_plan
+    pull_request {
+      branch = var.pull_branch_trigger_apply
+      comment_control = "COMMENTS_ENABLED"
     }
   }
+
   included_files = ["${var.first_trigger_folder}/**"]
 
   build {
