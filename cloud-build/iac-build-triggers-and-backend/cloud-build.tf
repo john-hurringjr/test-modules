@@ -18,7 +18,8 @@
  *****************************************/
 
 resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
-  name = "${var.code_folder}-push-and-plan"
+  for_each = local.folder_list
+  name = "${each.value}-push-and-plan"
   project = var.project_id
   github {
     owner = var.github_repo_owner
@@ -27,17 +28,17 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
       branch = var.push_branch_trigger_plan
     }
   }
-  included_files = ["${var.code_folder}/**"]
+  included_files = ["${each.value}/**"]
 
   build {
     step {
       name = "hashicorp/terraform"
-      dir = "./${var.code_folder}/"
+      dir = "./${each.value}/"
       args = ["init"]
     }
     step {
       name = "hashicorp/terraform"
-      dir = "./${var.code_folder}/"
+      dir = "./${each.value}/"
       args = ["plan"]
     }
     timeout = "7200s"

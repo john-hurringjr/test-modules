@@ -1,6 +1,6 @@
 
 
 locals {
-  folder_list = toset(var.code_folder
+  folder_list = toset(var.code_folders)
 
 }
