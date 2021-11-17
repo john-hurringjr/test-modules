@@ -8,6 +8,7 @@ locals {
     "roles/logging.admin",
     "roles/iam.serviceAccountAdmin",
     "roles/storage.admin",
+    "roles/resourcemanager.projectIamAdmin"
   ]
 }
 
