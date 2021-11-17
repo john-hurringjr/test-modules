@@ -30,6 +30,7 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
       branch = var.push_branch_trigger_plan
     }
   }
+
   included_files = ["${var.first_trigger_folder}/**"]
 
   build {

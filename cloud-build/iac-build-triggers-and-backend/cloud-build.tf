@@ -18,9 +18,13 @@
  *****************************************/
 
 resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
+  depends_on = [google_service_account.cloud_build_service_account]
   for_each = local.folder_list
   name = "${each.value}-push-and-plan"
   project = var.project_id
+
+  service_account = "projects/${var.project_id}/serviceAccounts/cbsa-${each.value}@${var.project_id}.iam.gserviceaccount.com"
+
   github {
     owner = var.github_repo_owner
     name = var.github_repo_name
@@ -28,6 +32,7 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
       branch = var.push_branch_trigger_plan
     }
   }
+
   included_files = ["${each.value}/**"]
 
   build {
