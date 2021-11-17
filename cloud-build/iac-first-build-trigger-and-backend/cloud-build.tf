@@ -23,6 +23,10 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
 
   service_account = google_service_account.sa_00_trigger.id
 
+  options {
+    logging = "CLOUD_LOGGING_ONLY"
+  }
+
   github {
     owner = var.github_repo_owner
     name = var.github_repo_name
