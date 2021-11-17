@@ -46,7 +46,7 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
     timeout = "7200s"
 
     options {
-      logging = "STACKDRIVER_ONLY"
+      logging = "LOGGING_UNSPECIFIED"
     }
   }
 
