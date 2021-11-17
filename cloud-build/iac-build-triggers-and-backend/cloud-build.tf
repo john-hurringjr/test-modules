@@ -36,6 +36,10 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
   included_files = ["${each.value}/**"]
 
   build {
+
+    logs_bucket = "${google_storage_bucket.cloud_build_logs_bucket.url}/${each.value}"
+
+
     step {
       name = "hashicorp/terraform"
       dir = "./${each.value}/"
