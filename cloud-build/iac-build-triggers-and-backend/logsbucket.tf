@@ -30,8 +30,8 @@ resource "google_storage_bucket" "cloud_build_logs_bucket" {
 
 }
 
-resource "google_storage_bucket_object" "folder" {
-  for_each = var.code_folders
+resource "google_storage_bucket_object" "logs_folders" {
+  for_each = local.folder_list
   bucket = google_storage_bucket.cloud_build_logs_bucket.name
   name   = "${each.value}/"
 }

@@ -11,6 +11,14 @@ resource "google_storage_bucket" "backend_state_bucket" {
   }
 }
 
+
+resource "google_storage_bucket_object" "backend_folders" {
+  for_each = local.folder_list
+  bucket = google_storage_bucket.backend_state_bucket.name
+  name   = "${each.value}/"
+}
+
+
 /******************************************
   Random String
  *****************************************/

@@ -17,7 +17,7 @@
   Create Service Account to run pipeline for 00-trigger
  *****************************************/
 resource "google_service_account" "cloud_build_service_account" {
-  for_each = var.code_folders
+  for_each = local.folder_list
   account_id  = "cloud-build-sa-${each.value}"
   project     = var.project_id
 }
