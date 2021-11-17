@@ -23,11 +23,6 @@ variable "project_id" {
   default     = ""
 }
 
-variable "code_folders" {
-  type = list()
-  description = "A list of all the folders you have created that will deploy. Base example includes the first six: 00-triggers, 01-org-iam, 02-org-policies-org-node, 03-folders-and-folder-iam, 04-suggested-projects, 05-simple-networking, 06-org-log-sinks"
-}
-
 variable "push_branch_trigger_plan" {
   default = "development"
   type = string
@@ -45,7 +40,13 @@ variable "github_repo_name" {
 }
 
 variable "gcs_terraform_backend_bucket_location" {
-  type = string
-  default = "US"
+  type        = string
+  default     = "US"
   description = "Must be multiregional location such as ASIA US EU. Default is US."
+}
+
+variable "first_trigger_folder" {
+  description = "Do not change unless you've renamed the folder hosting your trigger pipeline"
+  default     = "00-triggers"
+  type        = string
 }

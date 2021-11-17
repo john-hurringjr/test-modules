@@ -37,3 +37,8 @@ variable "extra_apis_to_enable" {
   type = list
   description = "Many APIs are enabled by default, but if any are missing from core list, add them here."
 }
+
+variable "user_id" {
+  type = string
+  description = "Your user ID which will be granted some predefined role permissions"
+}
