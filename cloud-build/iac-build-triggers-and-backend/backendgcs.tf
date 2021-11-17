@@ -18,7 +18,6 @@ resource "google_storage_bucket_object" "backend_folders" {
   name   = "${each.value}/"
 }
 
-
 /******************************************
   Random String
  *****************************************/
