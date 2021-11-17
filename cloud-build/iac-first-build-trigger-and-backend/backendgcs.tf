@@ -6,9 +6,13 @@ resource "google_storage_bucket" "first_trigger_backend_state_bucket" {
   name      = "terraform-backend-first-trigger-${random_string.random_string.result}"
   location  = var.gcs_terraform_backend_bucket_location
   storage_class = "MULTI_REGIONAL"
+
+  uniform_bucket_level_access = true
+
   versioning {
     enabled = true
   }
+
 }
 
 /******************************************
