@@ -20,17 +20,20 @@
 variable "unique_project_id" {
   description = "A unique ID for your org to start all project IDs"
   type        = string
-  default     = ""
 }
 
 variable "org_id" {
-  description = "The folder ID of where the project will reside."
+  description = "The org ID of where the project will reside."
   type        = string
-  default     = ""
 }
 
 variable "billing_account_id" {
   description = "Billing Account ID where costs of the project will be charged."
   type        = string
-  default     = ""
+}
+
+variable "extra_apis_to_enable" {
+  default = []
+  type = list
+  description = "Many APIs are enabled by default, but if any are missing from core list, add them here."
 }

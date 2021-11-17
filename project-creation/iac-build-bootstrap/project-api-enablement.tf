@@ -17,93 +17,89 @@
   APIs
  *****************************************/
 
-resource "google_project_service" "enable_logging_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "logging.googleapis.com"
-  disable_on_destroy  = false
+locals {
+  apis_to_enable = toset(concat(local.api_list, var.extra_apis_to_enable))
+
+  api_list = [
+    "accesscontextmanager.googleapis.com",
+    "logging.googleapis.com",
+    "iam.googleapis.com",
+    "serviceusage.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "servicemanagement.googleapis.com",
+    "storage-component.googleapis.com",
+    "storage-api.googleapis.com",
+    "cloudbilling.googleapis.com",
+    "billingbudgets.googleapis.com",
+    "cloudbuild.googleapis.com",
+    "container.googleapis.com",
+    "secretmanager.googleapis.com",
+
+    "accessapproval.googleapis.com",
+    "notebooks.googleapis.com",
+    "ml.googleapis.com",
+    "meshca.googleapis.com",
+    "apigee.googleapis.com",
+    "apigeeconnect.googleapis.com",
+    "artifactregistry.googleapis.com",
+    "automl.googleapis.com",
+    "bigquery.googleapis.com",
+    "bigquerydatatransfer.googleapis.com",
+    "binaryauthorization.googleapis.com",
+    "privateca.googleapis.com",
+    "cloudasset.googleapis.com",
+    "bigtable.googleapis.com",
+    "composer.googleapis.com",
+    "datafusion.googleapis.com",
+    "dlp.googleapis.com",
+    "cloudfunctions.googleapis.com",
+    "healthcare.googleapis.com",
+    "cloudkms.googleapis.com",
+    "monitoring.googleapis.com",
+    "cloudprofiler.googleapis.com",
+    "spanner.googleapis.com",
+    "sqladmin.googleapis.com",
+    "storage.googleapis.com",
+    "tpu.googleapis.com",
+    "cloudtrace.googleapis.com",
+    "vision.googleapis.com",
+    "compute.googleapis.com",
+    "containeranalysis.googleapis.com",
+    "containerregistry.googleapis.com",
+    "datacatalog.googleapis.com",
+    "dataflow.googleapis.com",
+    "dataproc.googleapis.com",
+    "metastore.googleapis.com",
+    "gameservices.googleapis.com",
+    "gkeconnect.googleapis.com",
+    "gkehub.googleapis.com",
+    "iaptunnel.googleapis.com",
+    "managedidentities.googleapis.com",
+    "redis.googleapis.com",
+    "language.googleapis.com",
+    "oslogin.googleapis.com",
+    "pubsub.googleapis.com",
+    "pubsublite.googleapis.com",
+    "vpcaccess.googleapis.com",
+    "servicecontrol.googleapis.com",
+    "servicedirectory.googleapis.com",
+    "speech.googleapis.com",
+    "storagetransfer.googleapis.com",
+    "texttospeech.googleapis.com",
+    "translate.googleapis.com",
+    "videointelligence.googleapis.com",
+    "osconfig.googleapis.com",
+    "run.googleapis.com",
+
+    "dns.googleapis.com",
+
+  ]
 }
 
-resource "google_project_service" "enable_accesscontextmanager_api" {
+resource "google_project_service" "enable_api" {
   depends_on          = [google_project.project]
+  for_each            = local.apis_to_enable
   project             = google_project.project.project_id
-  service             = "accesscontextmanager.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_iam_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "iam.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_serviceusage_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "serviceusage.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_resourcemanager_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "cloudresourcemanager.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_servicemanagement_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "servicemanagement.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_storagecomponent_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "storage-component.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_storage_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "storage-api.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_billing_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "cloudbilling.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_budget_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "billingbudgets.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_build_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "cloudbuild.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_gke_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "container.googleapis.com"
-  disable_on_destroy  = false
-}
-
-resource "google_project_service" "enable_secret_manager_api" {
-  depends_on          = [google_project.project]
-  project             = google_project.project.project_id
-  service             = "secretmanager.googleapis.com"
+  service             = each.value
   disable_on_destroy  = false
 }

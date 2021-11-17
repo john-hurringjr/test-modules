@@ -19,7 +19,18 @@
 
 resource "google_project" "project" {
   name            = "IaC Project"
-  project_id      = var.unique_project_id
+  project_id      = "${var.unique_project_id}-iac-${random_string.random_string.result}"
   org_id          = var.org_id
   billing_account = var.billing_account_id
+}
+
+/******************************************
+  Random String
+ *****************************************/
+resource "random_string" "random_string" {
+  length    = 4
+  lower     = true
+  upper     = false
+  special   = false
+  number    = true
 }

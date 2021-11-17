@@ -14,12 +14,34 @@
  */
 
 /******************************************
-  Add Cloud Build to Billing Account
+  Plan Trigger
  *****************************************/
 
-resource "google_billing_account_iam_member" "cloud_build_billing_admin" {
-  depends_on = [google_project_service.enable_build_api, google_project.project]
-  billing_account_id  = var.billing_account_id
-  member              = "serviceAccount:service-${google_project.project.number}@gcp-sa-cloudbuild.iam.gserviceaccount.com"
-  role                = "roles/billing.admin"
+resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
+  name = "${var.code_folder}-push-and-plan"
+  project = var.project_id
+  github {
+    owner = var.github_repo_owner
+    name = var.github_repo_name
+    push {
+      branch = var.push_branch_trigger_plan
+    }
+  }
+  included_files = ["${var.code_folder}/**"]
+
+  build {
+    step {
+      name = "hashicorp/terraform"
+      dir = "./${var.code_folder}/"
+      args = ["init"]
+    }
+    step {
+      name = "hashicorp/terraform"
+      dir = "./${var.code_folder}/"
+      args = ["plan"]
+    }
+    timeout = "7200s"
+  }
+
+
 }
