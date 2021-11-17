@@ -33,6 +33,9 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
   included_files = ["${var.first_trigger_folder}/**"]
 
   build {
+
+    logs_bucket = google_storage_bucket.cloud_build_logs_bucket.id
+
     step {
       name = "hashicorp/terraform"
       dir = "./${var.first_trigger_folder}/"
@@ -44,10 +47,6 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
       args = ["plan"]
     }
     timeout = "7200s"
-
-    options {
-      logging = "LOGGING_UNSPECIFIED"
-    }
   }
 
 
