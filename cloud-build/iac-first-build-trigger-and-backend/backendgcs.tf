@@ -3,7 +3,7 @@
  *****************************************/
 resource "google_storage_bucket" "first_trigger_backend_state_bucket" {
   project   = var.project_id
-  name      = "terraform-backend-first-trigger-${random_string.random_string.result}"
+  name      = "terraform-backend-first-trigger-${random_string.first_trigger_random_string.result}"
   location  = var.gcs_terraform_backend_bucket_location
   storage_class = "MULTI_REGIONAL"
 
@@ -18,7 +18,7 @@ resource "google_storage_bucket" "first_trigger_backend_state_bucket" {
 /******************************************
   Random String
  *****************************************/
-resource "random_string" "random_string" {
+resource "random_string" "first_trigger_random_string" {
   length    = 30
   lower     = true
   upper     = false

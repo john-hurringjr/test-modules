@@ -3,7 +3,7 @@
  *****************************************/
 resource "google_storage_bucket" "cloud_build_logs_bucket" {
   project   = var.project_id
-  name      = "cloud-build-logs-${random_string.random_string.result}"
+  name      = "cloud-build-logs-${random_string.build_logs_random_string.result}"
   location  = var.gcs_terraform_backend_bucket_location
   storage_class = "MULTI_REGIONAL"
 
@@ -18,7 +18,7 @@ resource "google_storage_bucket" "cloud_build_logs_bucket" {
 /******************************************
   Random String
  *****************************************/
-resource "random_string" "random_string" {
+resource "random_string" "build_logs_random_string" {
   length    = 35
   lower     = true
   upper     = false
