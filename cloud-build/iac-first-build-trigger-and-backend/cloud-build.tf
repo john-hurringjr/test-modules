@@ -20,6 +20,9 @@
 resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
   name = "manage-triggers-push-and-plan"
   project = var.project_id
+
+  service_account = google_service_account.sa_00_trigger.id
+
   github {
     owner = var.github_repo_owner
     name = var.github_repo_name
