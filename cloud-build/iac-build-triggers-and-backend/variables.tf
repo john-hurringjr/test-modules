@@ -25,7 +25,7 @@ variable "project_id" {
 
 variable "code_folders" {
   type = list()
-  description = "A list of all the folders you have created that will deploy. Base example includes the first six: 01-org-iam, 02-org-policies-org-node, 03-folders-and-folder-iam, 04-suggested-projects, 05-simple-networking, 06-org-log-sinks"
+  description = "A list of all the folders you have created that will deploy. Base example includes the first six: 00-triggers, 01-org-iam, 02-org-policies-org-node, 03-folders-and-folder-iam, 04-suggested-projects, 05-simple-networking, 06-org-log-sinks"
 }
 
 variable "push_branch_trigger_plan" {

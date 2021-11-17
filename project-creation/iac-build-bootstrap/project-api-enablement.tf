@@ -73,7 +73,6 @@ locals {
     "gameservices.googleapis.com",
     "gkeconnect.googleapis.com",
     "gkehub.googleapis.com",
-    "iaptunnel.googleapis.com",
     "managedidentities.googleapis.com",
     "redis.googleapis.com",
     "language.googleapis.com",
