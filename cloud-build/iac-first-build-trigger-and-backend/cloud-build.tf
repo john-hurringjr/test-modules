@@ -51,3 +51,42 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
 
 
 }
+
+/******************************************
+  Apply Trigger
+ *****************************************/
+
+resource "google_cloudbuild_trigger" "pull_and_apply_trigger" {
+  name = "manage-triggers-pull-and-apply"
+  project = var.project_id
+
+  service_account = google_service_account.sa_00_trigger.id
+
+  github {
+    owner = var.github_repo_owner
+    name = var.github_repo_name
+    push {
+      branch = var.push_branch_trigger_plan
+    }
+  }
+  included_files = ["${var.first_trigger_folder}/**"]
+
+  build {
+
+    logs_bucket = google_storage_bucket.cloud_build_logs_bucket.id
+
+    step {
+      name = "hashicorp/terraform"
+      dir = "./${var.first_trigger_folder}/"
+      args = ["init"]
+    }
+    step {
+      name = "hashicorp/terraform"
+      dir = "./${var.first_trigger_folder}/"
+      args = ["apply", "--auto-approve"]
+    }
+    timeout = "7200s"
+  }
+
+
+}
