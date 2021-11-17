@@ -34,7 +34,8 @@ resource "google_cloudbuild_trigger" "push_and_plan_trigger" {
   included_files = ["${var.first_trigger_folder}/**"]
 
   build {
-
+    // Required when using customer SA rather tha cloud build SA
+    // Location to write logs to for the run
     logs_bucket = google_storage_bucket.cloud_build_logs_bucket.id
 
     step {
@@ -68,6 +69,7 @@ resource "google_cloudbuild_trigger" "pull_and_apply_trigger" {
     name = var.github_repo_name
     pull_request {
       branch = var.pull_branch_trigger_apply
+      // Below flag requires that when submitting the pull request the comment must include "/gcbrun"
       comment_control = "COMMENTS_ENABLED"
     }
   }
@@ -75,7 +77,8 @@ resource "google_cloudbuild_trigger" "pull_and_apply_trigger" {
   included_files = ["${var.first_trigger_folder}/**"]
 
   build {
-
+    // Required when using customer SA rather tha cloud build SA
+    // Location to write logs to for the run
     logs_bucket = google_storage_bucket.cloud_build_logs_bucket.id
 
     step {
