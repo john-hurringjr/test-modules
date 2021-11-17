@@ -18,6 +18,7 @@
  *****************************************/
 resource "google_service_account" "cloud_build_service_account" {
   for_each = local.folder_list
-  account_id  = "cloud-build-sa-${each.value}"
+  account_id  = "cbsa-${each.value}"
+  description = "Cloud Build Service Account (cbsa) for ${each.value} pipeline"
   project     = var.project_id
 }
